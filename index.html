@@ -773,7 +773,7 @@ const S = {
   bateria: 100, bateriaMax: 100, bateriaAvisada: false,
   nocheSonT: 0, // temporizador de sonidos ambientales del bosque nocturno
   puntuacion: 0,
-  fotos: 0, fotosPorNivel: 4,
+  fotos: 0,
   tiempoNivel: 0,
   tiempoTotal: 0,
   danoRecibido: 0,
@@ -863,8 +863,8 @@ const NIVELES = [
     zombies: { caminantes: 2, velCam: 1.9, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 3, aggro: 20, intervalo: 14, radioSpawn: 24 },
   },
   {
-    nombre: 'Las Ruinas del Barrio', tema: 'ciudad', largo: 320, fotosReq: 4,
-    texto: 'Juan te espera en el refugio con Donna y Zanahorio. Cruza el barrio devastado... y recoge las 4 FOTOS 📸 para abrir la puerta del refugio (marcadas en el minimapa).',
+    nombre: 'Las Ruinas del Barrio', tema: 'ciudad', largo: 700, fotosReq: 5,
+    texto: 'Juan te espera en el refugio con Donna y Zanahorio. Cruza el barrio devastado... y recoge las 5 FOTOS 📸 para abrir la puerta del refugio (marcadas en el minimapa).',
     encuentro: [
       ['Juan', 'El barrio está perdido, pero conseguí provisiones... ¡y los gatos están sanos!'],
       ['Angie', 'Bien. Porque si les pasa algo, te mando con los zombis.'],
@@ -872,11 +872,11 @@ const NIVELES = [
     niebla: 0xc9c2b8, nieblaDist: 95,
     cielo: { top: 0x6fa8dc, mid: 0xcfe3ef, abajo: 0xe8e2d4 },
     sol: { dir: { x: 0.55, y: 0.75, z: 0.35 }, color: 0xfff2d0, int: 1.25, luz: 0xfff0d8 },
-    zombies: { caminantes: 7, velCam: 2.5, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 9, aggro: 23, intervalo: 4.5, radioSpawn: 32 },
+    zombies: { caminantes: 10, velCam: 2.5, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 13, aggro: 24, intervalo: 3.6, radioSpawn: 32 },
   },
   {
-    nombre: 'El Parque Abandonado', tema: 'parque', largo: 450, fotosReq: 4,
-    texto: '¡Los gatos corrieron hacia el parque! Los corredores ya aparecieron... recoge las 4 FOTOS 📸 y no dejes que te alcancen.',
+    nombre: 'El Parque Abandonado', tema: 'parque', largo: 1000, fotosReq: 6,
+    texto: '¡Los gatos corrieron hacia el parque! Los corredores ya aparecieron... recoge las 6 FOTOS 📸 y no dejes que te alcancen.',
     encuentro: [
       ['Juan', '¡Los pillé junto a la fuente! Pero están nerviosos... no te acerques mucho.'],
       ['Angie', '¿Desde cuándo el parque tiene zombis tan rápidos?'],
@@ -884,11 +884,11 @@ const NIVELES = [
     niebla: 0xd8c3a0, nieblaDist: 115,
     cielo: { top: 0xd98a4e, mid: 0xf0b27a, abajo: 0xffe3c2 },
     sol: { dir: { x: -0.5, y: 0.5, z: 0.6 }, color: 0xffc98a, int: 1.05, luz: 0xffd9a8 },
-    zombies: { caminantes: 8, velCam: 2.7, corredores: 4, velCor: 4.8, abominaciones: 0, maxVivos: 12, aggro: 25, intervalo: 3.8, radioSpawn: 34 },
+    zombies: { caminantes: 10, velCam: 2.7, corredores: 6, velCor: 4.8, abominaciones: 0, maxVivos: 16, aggro: 25, intervalo: 3.2, radioSpawn: 34 },
   },
   {
-    nombre: 'El Bosque Siniestro', tema: 'bosque', largo: 560, fotosReq: 4,
-    texto: 'De noche, los zombis solo se ven cuando la linterna los alcanza. La batería se agota: encuentra pilas 🔋 y las 4 FOTOS 📸 antes de quedarte a oscuras.',
+    nombre: 'El Bosque Siniestro', tema: 'bosque', largo: 1300, fotosReq: 6,
+    texto: 'De noche, los zombis solo se ven cuando la linterna los alcanza. La batería se agota: encuentra pilas 🔋 y las 6 FOTOS 📸 antes de quedarte a oscuras.',
     encuentro: [
       ['Juan', '¡Casi los atrapo entre los árboles! Son más rápidos de lo que parecen...'],
       ['Angie', '¿Y esas cosas enormes que gruñen? No quiero volver a verlas.'],
@@ -896,11 +896,11 @@ const NIVELES = [
     niebla: 0x0a120e, nieblaDist: 55,
     cielo: { top: 0x03050c, mid: 0x0b1220, abajo: 0x141c28 },
     sol: { dir: { x: 0.2, y: 0.6, z: 0.4 }, color: 0x8fb8ff, int: 0.36, luz: 0x8fb8ff, esNoche: true },
-    zombies: { caminantes: 7, velCam: 2.9, corredores: 6, velCor: 5.2, abominaciones: 2, velAbo: 1.8, maxVivos: 14, aggro: 27, intervalo: 3.2, radioSpawn: 36 },
+    zombies: { caminantes: 9, velCam: 2.9, corredores: 8, velCor: 5.2, abominaciones: 3, velAbo: 1.8, maxVivos: 17, aggro: 27, intervalo: 2.7, radioSpawn: 36 },
   },
   {
-    nombre: 'La Autopista del Caos', tema: 'autopista', largo: 680, fotosReq: 4,
-    texto: '¡Los gatos cruzaron la autopista! Esquivar coches y corredores a la vez... y busca las 4 FOTOS 📸. Vas a necesitar reflejos.',
+    nombre: 'La Autopista del Caos', tema: 'autopista', largo: 1600, fotosReq: 7,
+    texto: '¡Los gatos cruzaron la autopista! Esquivar coches y corredores a la vez... y busca las 7 FOTOS 📸. Vas a necesitar reflejos.',
     encuentro: [
       ['Juan', '¡Cruzaron entre los coches! Si los pierdo otra vez... nos vamos directo a casa.'],
       ['Angie', 'Pues corre, porque la casa es el último refugio que nos queda.'],
@@ -908,17 +908,17 @@ const NIVELES = [
     niebla: 0xb8a888, nieblaDist: 125,
     cielo: { top: 0x8a6a4a, mid: 0xd9a05e, abajo: 0xf5d9a8 },
     sol: { dir: { x: 0.8, y: 0.45, z: 0.3 }, color: 0xffd9a0, int: 1.15, luz: 0xffc98a },
-    zombies: { caminantes: 9, velCam: 3.0, corredores: 7, velCor: 5.6, abominaciones: 2, velAbo: 2.0, maxVivos: 16, aggro: 29, intervalo: 2.8, radioSpawn: 38 },
+    zombies: { caminantes: 11, velCam: 3.0, corredores: 9, velCor: 5.6, abominaciones: 3, velAbo: 2.0, maxVivos: 19, aggro: 29, intervalo: 2.4, radioSpawn: 38 },
   },
   {
-    nombre: 'El Centro Devastado', tema: 'centro', largo: 800, fotosReq: 4,
-    texto: 'El corazón de la ciudad. La horda está por todas partes... y El Devorador custodia la casa. Recoge las 4 FOTOS 📸 y las misiones de Juan: 5 sushis y 3 mochis para el banquete familiar.',
+    nombre: 'El Centro Devastado', tema: 'centro', largo: 1900, fotosReq: 7,
+    texto: 'El corazón de la ciudad. La horda está por todas partes... y El Devorador custodia la casa. Recoge las 7 FOTOS 📸 y las misiones de Juan: 5 sushis y 3 mochis para el banquete familiar.',
     encuentro: [],
     niebla: 0xb59a78, nieblaDist: 135,
     cielo: { top: 0x4a6fa5, mid: 0xc79a6a, abajo: 0xf2d9b0 },
     sol: { dir: { x: -0.6, y: 0.8, z: 0.2 }, color: 0xfff0d0, int: 1.35, luz: 0xffe8c0 },
-    zombies: { caminantes: 10, velCam: 3.2, corredores: 8, velCor: 6.0, abominaciones: 3, velAbo: 2.2, maxVivos: 20, aggro: 31, intervalo: 2.2, radioSpawn: 42 },
-    jefe: { nombre: 'EL DEVORADOR', vida: 1800, dano: 48, vel: 3.8, velFuria: 4.8 },
+    zombies: { caminantes: 12, velCam: 3.2, corredores: 10, velCor: 6.0, abominaciones: 4, velAbo: 2.2, maxVivos: 22, aggro: 31, intervalo: 2.0, radioSpawn: 42 },
+    jefe: { nombre: 'EL DEVORADOR', vida: 3000, dano: 48, vel: 3.8, velFuria: 4.8 },
   },
 ];
 
@@ -3382,7 +3382,7 @@ function actualizarLinterna(dt){
   if (!encendida) return;
   // la batería solo se gasta mientras juegas (no en pausa, cutscene ni modo foto)
   if (S.estado === 'jugando' && !Foto.activo && S.bateria > 0){
-    S.bateria = Math.max(0, S.bateria - dt * 2.0);
+    S.bateria = Math.max(0, S.bateria - dt * 1.6);
   }
   const pct = S.bateria / S.bateriaMax;
   if (S.bateria <= 0){
@@ -4009,7 +4009,7 @@ function despertarMochiGigante(){
   const z = clamp(jugador.position.z + Math.cos(ang) * 9, 15, metaZ - 12);
   const m = crearMochiGigante(x, z);
   S.mochiJefe = {
-    m, vida: 400, vidaMax: 400, muerto: false, moribundo: 0, enSalto: false, saltoT: 0,
+    m, vida: 550, vidaMax: 550, muerto: false, moribundo: 0, enSalto: false, saltoT: 0,
     ataqueCd: 0, lanzarCd: 3, vel: 2.8, daño: 25,
   };
   sacudida = 0.7;
@@ -6747,7 +6747,9 @@ function construirNivel(n){
   zanahorio.rotation.y = Math.PI;
   escena.add(zanahorio);
 
-  // Recogibles
+  // Recogibles: la cantidad escala con el tamaño del nivel (los niveles largos
+  // necesitan más suministros para aguantar todo el recorrido)
+  const escala = clamp(cfg.largo / 450, 0.8, 2.5);
   const soltar = (tipo, cant) => {
     let puestos = 0, intentos = 0;
     while (puestos < cant && intentos < 200){
@@ -6761,13 +6763,13 @@ function construirNivel(n){
       puestos++;
     }
   };
-  soltar('botiquin', 5);
-  soltar('cafe', 3);
-  soltar('foto', S.fotosPorNivel);
+  soltar('botiquin', Math.round(5 * escala));
+  soltar('cafe', Math.round(3 * escala));
+  soltar('foto', NIVELES[n].fotosReq || 0);
   soltar('arma', 1);
-  soltar('municion', 2);
-  // en la noche: pilas para la linterna (la batería se agota ~45 s)
-  if (cfg.sol.esNoche) soltar('pilas', 4);
+  soltar('municion', Math.round(2 * escala));
+  // en la noche: pilas para la linterna (el bosque ahora es más largo, hace falta más luz)
+  if (cfg.sol.esNoche) soltar('pilas', Math.round(4 * escala));
   // botiquín garantizado para el tutorial (nivel 1)
   if (n === 0){
     let bx = 5, bz = 16;
@@ -7318,7 +7320,7 @@ function completarNivel(){
   S.estado = 'superado';
   AudioSys.nivelSuperado();
   const nivel = S.nivel;
-  const bonus = Math.round(clamp(S.vida, 0, S.vidaMax) * 8 + Math.max(0, 200 - S.tiempoNivel * 2));
+  const bonus = Math.round(clamp(S.vida, 0, S.vidaMax) * 8 + Math.max(0, 300 - S.tiempoNivel));
   const puntos = S.fotos * 1000 + bonus;
   S.puntuacion += puntos;
   if (nivel + 1 < S.maxNivel) S.desbloqueados = Math.max(S.desbloqueados, nivel + 2);
@@ -7326,7 +7328,7 @@ function completarNivel(){
   const est = document.getElementById('nivel-superado-est');
   est.innerHTML =
     '<div class="fila"><span>⏱ Tiempo</span><b>' + formatearTiempo(S.tiempoNivel) + '</b></div>' +
-    '<div class="fila"><span>📸 Fotos encontradas</span><b>' + S.fotos + ' / ' + S.fotosPorNivel + '</b></div>' +
+    '<div class="fila"><span>📸 Fotos encontradas</span><b>' + S.fotos + ' / ' + (NIVELES[S.nivel].fotosReq || 0) + '</b></div>' +
     '<div class="fila"><span>☠️ Zombis eliminados</span><b>' + S.eliminadosNivel + '</b></div>' +
     (S.jefe ? '<div class="fila"><span>🦖 El Devorador</span><b>' + (S.jefe.muerto ? '¡Derrotado!' : 'Vivo') + '</b></div>' : '') +
     '<div class="fila"><span>💔 Daño recibido</span><b>' + S.danoNivel + '</b></div>' +
@@ -7365,7 +7367,7 @@ function terminarJuego(){
   const est = document.getElementById('fin-est');
   est.innerHTML =
     '<div class="fila"><span>⏱ Tiempo total</span><b>' + formatearTiempo(S.tiempoTotal) + '</b></div>' +
-    '<div class="fila"><span>📸 Fotos totales</span><b>' + S.fotosTotal + ' / ' + (S.fotosPorNivel * S.maxNivel) + '</b></div>' +
+    '<div class="fila"><span>📸 Fotos totales</span><b>' + S.fotosTotal + ' / ' + NIVELES.reduce((a, n) => a + (n.fotosReq || 0), 0) + '</b></div>' +
     '<div class="fila"><span>☠️ Zombis eliminados</span><b>' + S.eliminadosTotal + '</b></div>' +
     '<div class="fila"><span>🍣 Sushis de Juan</span><b>' + S.sushisRecogidos + '/5' + (banquete ? ' ✅' : '') + '</b></div>' +
     '<div class="fila"><span>🍡 Mochis para los gatos</span><b>' + S.mochisRecogidos + '/3' + (S.mochiJefe && S.mochiJefe.muerto ? ' ✅' : '') + '</b></div>' +

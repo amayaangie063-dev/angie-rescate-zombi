@@ -293,6 +293,14 @@
   #select-niveles .nivel-chip.bloqueado{ opacity:.25; cursor:not-allowed; }
   #select-niveles .nivel-chip.actual{ border-color:var(--verde); color:var(--verde); box-shadow:0 0 10px rgba(125,206,106,0.4); }
 
+  /* Menú principal: todo completo y organizado */
+  #menu .panel{ max-width:620px; max-height:92vh; overflow-y:auto; }
+  #menu .menu-sec{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px;
+  }
+  #menu .menu-sec .btn{ width:auto; min-width:0; flex:0 1 auto; padding:10px 14px; font-size:14px; margin:0; }
+  #menu .menu-sec .btn:nth-child(7){ white-space:nowrap; }
+
   #historia .panel{ text-align:left; max-width:560px; }
   #historia h3{ font-family:'Russo One',sans-serif; color:var(--naranja); margin:14px 0 6px; font-size:18px; }
   #historia p{ font-size:14.5px; line-height:1.7; color:#d8c9a8; margin-bottom:8px; }
@@ -422,15 +430,15 @@
     <button class="btn" id="btn-jugar">▶ JUGAR</button>
     <button class="btn fantasma oculto" id="btn-continuar">CONTINUAR</button>
     <div id="select-niveles"></div>
-    <div style="display:flex; gap:10px;">
-      <button class="btn fantasma" id="btn-tutorial" style="margin:4px 0;">🎓 TUTORIAL</button>
-      <button class="btn fantasma" id="btn-tienda" style="margin:4px 0;">🛒 TIENDA</button>
-      <button class="btn fantasma" id="btn-logros" style="margin:4px 0;">🏆 LOGROS</button>
-      <button class="btn fantasma" id="btn-controles" style="margin:4px 0;">CONTROLES</button>
-      <button class="btn fantasma" id="btn-historia" style="margin:4px 0;">HISTORIA</button>
-      <button class="btn fantasma" id="btn-sonido" style="margin:4px 0;">🔊 SONIDO</button>
-      <button class="btn fantasma" id="btn-subtitulos" style="margin:4px 0;">💬 SUBTÍTULOS: SÍ</button>
-      <button class="btn fantasma" id="btn-personalizar" style="margin:4px 0;">💃 PERSONALIZAR</button>
+    <div style="display:flex; gap:10px;" class="menu-sec">
+      <button class="btn fantasma" id="btn-tutorial">🎓 TUTORIAL</button>
+      <button class="btn fantasma" id="btn-tienda">🛒 TIENDA</button>
+      <button class="btn fantasma" id="btn-logros">🏆 LOGROS</button>
+      <button class="btn fantasma" id="btn-controles">CONTROLES</button>
+      <button class="btn fantasma" id="btn-historia">HISTORIA</button>
+      <button class="btn fantasma" id="btn-sonido">🔊 SONIDO</button>
+      <button class="btn fantasma" id="btn-subtitulos">💬 SUBTÍTULOS: SÍ</button>
+      <button class="btn fantasma" id="btn-personalizar">💃 PERSONALIZAR</button>
     </div>
   </div>
 </div>
@@ -540,7 +548,7 @@
       <tr><td><span class="tecla">D</span> / <span class="tecla">→</span></td><td>Girar a la derecha</td></tr>
       <tr><td><span class="tecla">Shift</span></td><td>Correr (gasta resistencia)</td></tr>
       <tr><td><span class="tecla">Espacio</span></td><td>Saltar</td></tr>
-      <tr><td><span class="tecla">Clic</span></td><td>Atacar (golpe) o disparar (con la pistola)</td></tr>
+      <tr><td><span class="tecla">Enter</span> / <span class="tecla">Clic</span></td><td>Atacar (golpe) o disparar (con la pistola)</td></tr>
       <tr><td><span class="tecla">1</span> <span class="tecla">2</span> <span class="tecla">3</span> <span class="tecla">4</span></td><td>Cambiar de arma (bate, machete, pala, pistola)</td></tr>
       <tr><td><span class="tecla">E</span></td><td>Recargar la pistola</td></tr>
       <tr><td><span class="tecla">Ctrl</span></td><td>Agacharse (modo sigilo: te detectan menos)</td></tr>
@@ -551,7 +559,7 @@
       <tr><td><span class="tecla">Esc</span></td><td>Pausa</td></tr>
       <tr><td><span class="tecla">R</span></td><td>Reiniciar nivel</td></tr>
     </table>
-    <p style="font-size:12.5px; color:#a08f72; margin-top:8px;">Tip: agáchate (Ctrl) para pasar de largo a los zombis, o golpéalos con el clic y remata con la patada (F). Los zombis caídos sueltan botín 🪙.</p>
+    <p style="font-size:12.5px; color:#a08f72; margin-top:8px;">Tip: agáchate (Ctrl) para pasar de largo a los zombis, o golpéalos con Enter y remata con la patada (F). Los zombis caídos sueltan botín 🪙.</p>
     <button class="btn" id="btn-controles-cerrar">CERRAR ▶</button>
   </div>
 </div>
@@ -653,7 +661,7 @@
       <div style="flex:1; min-width:220px;">
         <div class="inv-titulo">🔫 ARSENAL</div>
         <div id="pausa-armas"></div>
-        <p style="font-size:11.5px; color:#a08f72; margin-top:6px;">Haz clic en un arma para equiparla.</p>
+        <p style="font-size:11.5px; color:#a08f72; margin-top:6px;">Haz clic o pulsa 1-4 para equipar un arma.</p>
       </div>
       <div style="flex:1; min-width:220px;">
         <div class="inv-titulo">🎁 MEJORAS DE LOS GATITOS</div>
@@ -731,6 +739,11 @@
   cargarThree(fuentesThree, 0);
 </script>
 
+<!-- Copia de Michelle embebida en base64: se carga vía <script> (no bloqueada por CORS
+     cuando abres index.html con doble clic / protocolo file:). Si el navegador bloquea
+     la descarga del .glb por file://, el juego usa esta copia para mostrar a Angie igual. -->
+<script src="michelle_b64.js"></script>
+
 <script>
 'use strict';
 /* ===== ÁREA DE JUEGO ===== */
@@ -753,14 +766,14 @@ function V3(x, y, z){ return new THREE.Vector3(x, y, z); }
 const S = {
   estado: 'carga',            // carga | menu | intro | jugando | cutscene | superado | derrota | pausa | fin
   nivel: 0,
-  maxNivel: 5,
+  maxNivel: 6,
   desbloqueados: 1,
   vida: 100, vidaMax: 100,
   resistencia: 100, resMax: 100,
   bateria: 100, bateriaMax: 100, bateriaAvisada: false,
   nocheSonT: 0, // temporizador de sonidos ambientales del bosque nocturno
   puntuacion: 0,
-  fotos: 0, fotosPorNivel: 3,
+  fotos: 0, fotosPorNivel: 4,
   tiempoNivel: 0,
   tiempoTotal: 0,
   danoRecibido: 0,
@@ -817,7 +830,7 @@ const PASOS_TUTORIAL = [
   { icono: '🔄', titulo: 'Gira',        texto: 'Pulsa A y D (o ← →) para girar y orientarte por el mundo.' },
   { icono: '💨', titulo: 'Esprinta',    texto: 'Mantén Shift mientras avanzas para correr más rápido (gasta resistencia ⚡).' },
   { icono: '🦘', titulo: 'Salta',       texto: 'Pulsa Espacio para saltar y librarte de obstáculos.' },
-  { icono: '⚔️', titulo: 'Ataca',      texto: 'Haz clic para golpear con tu bate. ¡Los zombis tienen vida: remátalos!' },
+  { icono: '⚔️', titulo: 'Ataca',      texto: 'Pulsa Enter (o haz clic) para golpear con tu bate. ¡Los zombis tienen vida: remátalos!' },
   { icono: '🦵', titulo: 'Patada',      texto: 'Pulsa F para dar una patada de emergencia y abrirte paso entre la horda.' },
   { icono: '🎁', titulo: 'Recoge',      texto: 'Toca los objetos brillantes para recogerlos. ¡Este botiquín te curará!' },
 ];
@@ -837,32 +850,45 @@ const MEJORAS = [
 ];
 const NIVELES = [
   {
-    nombre: 'Las Ruinas del Barrio', tema: 'ciudad', largo: 170,
-    texto: 'Juan te espera en el refugio con Donna y Zanahorio. Cruza el barrio devastado sin caer ante los caminantes.',
+    nombre: 'TUTORIAL: Aprende a Sobrevivir', tema: 'ciudad', largo: 90, esTutorial: true, fotosReq: 0,
+    texto: 'Antes de cruzar la ciudad, practica aquí: muévete, esprinta, salta, golpea y patea. Los zombis de práctica son lentos. ¡Puedes omitirlo con SALTAR TUTORIAL si ya sabes jugar!',
     encuentro: [
-      ['Juan', 'El barrio está perdido, pero conseguí provisiones... ¡y los gatos están sanos!'],
-      ['Angie', 'Bien. Porque si les pasa algo, te mando con los zombis.'],
+      ['Juan', '¡Bienvenida al patio de entrenamiento, Angie! Aquí solo hay zombis de práctica... casi inofensivos.'],
+      ['Angie', '¿Y por qué me miran feo?'],
+      ['Juan', 'Porque son zombis. Practica: en cada zona tendrás que recoger FOTOS 📸 para abrir la puerta del refugio.'],
     ],
     niebla: 0xc9c2b8, nieblaDist: 90,
     cielo: { top: 0x6fa8dc, mid: 0xcfe3ef, abajo: 0xe8e2d4 },
     sol: { dir: { x: 0.55, y: 0.75, z: 0.35 }, color: 0xfff2d0, int: 1.25, luz: 0xfff0d8 },
-    zombies: { caminantes: 5, velCam: 2.3, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 6, aggro: 22, intervalo: 7, radioSpawn: 30 },
+    zombies: { caminantes: 2, velCam: 1.9, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 3, aggro: 20, intervalo: 14, radioSpawn: 24 },
   },
   {
-    nombre: 'El Parque Abandonado', tema: 'parque', largo: 215,
-    texto: '¡Los gatos corrieron hacia el parque! Juan va detrás de ellos. Los corredores ya aparecieron... no dejes que te alcancen.',
+    nombre: 'Las Ruinas del Barrio', tema: 'ciudad', largo: 320, fotosReq: 4,
+    texto: 'Juan te espera en el refugio con Donna y Zanahorio. Cruza el barrio devastado... y recoge las 4 FOTOS 📸 para abrir la puerta del refugio (marcadas en el minimapa).',
+    encuentro: [
+      ['Juan', 'El barrio está perdido, pero conseguí provisiones... ¡y los gatos están sanos!'],
+      ['Angie', 'Bien. Porque si les pasa algo, te mando con los zombis.'],
+    ],
+    niebla: 0xc9c2b8, nieblaDist: 95,
+    cielo: { top: 0x6fa8dc, mid: 0xcfe3ef, abajo: 0xe8e2d4 },
+    sol: { dir: { x: 0.55, y: 0.75, z: 0.35 }, color: 0xfff2d0, int: 1.25, luz: 0xfff0d8 },
+    zombies: { caminantes: 7, velCam: 2.5, corredores: 0, velCor: 0, abominaciones: 0, maxVivos: 9, aggro: 23, intervalo: 4.5, radioSpawn: 32 },
+  },
+  {
+    nombre: 'El Parque Abandonado', tema: 'parque', largo: 450, fotosReq: 4,
+    texto: '¡Los gatos corrieron hacia el parque! Los corredores ya aparecieron... recoge las 4 FOTOS 📸 y no dejes que te alcancen.',
     encuentro: [
       ['Juan', '¡Los pillé junto a la fuente! Pero están nerviosos... no te acerques mucho.'],
       ['Angie', '¿Desde cuándo el parque tiene zombis tan rápidos?'],
     ],
-    niebla: 0xd8c3a0, nieblaDist: 110,
+    niebla: 0xd8c3a0, nieblaDist: 115,
     cielo: { top: 0xd98a4e, mid: 0xf0b27a, abajo: 0xffe3c2 },
     sol: { dir: { x: -0.5, y: 0.5, z: 0.6 }, color: 0xffc98a, int: 1.05, luz: 0xffd9a8 },
-    zombies: { caminantes: 5, velCam: 2.5, corredores: 2, velCor: 4.6, abominaciones: 0, maxVivos: 8, aggro: 24, intervalo: 5.5, radioSpawn: 32 },
+    zombies: { caminantes: 8, velCam: 2.7, corredores: 4, velCor: 4.8, abominaciones: 0, maxVivos: 12, aggro: 25, intervalo: 3.8, radioSpawn: 34 },
   },
   {
-    nombre: 'El Bosque Siniestro', tema: 'bosque', largo: 260,
-    texto: 'De noche, los zombis solo se ven cuando la linterna los alcanza. La batería se agota: ¡encuentra pilas 🔋 en el bosque antes de quedarte a oscuras!',
+    nombre: 'El Bosque Siniestro', tema: 'bosque', largo: 560, fotosReq: 4,
+    texto: 'De noche, los zombis solo se ven cuando la linterna los alcanza. La batería se agota: encuentra pilas 🔋 y las 4 FOTOS 📸 antes de quedarte a oscuras.',
     encuentro: [
       ['Juan', '¡Casi los atrapo entre los árboles! Son más rápidos de lo que parecen...'],
       ['Angie', '¿Y esas cosas enormes que gruñen? No quiero volver a verlas.'],
@@ -870,29 +896,29 @@ const NIVELES = [
     niebla: 0x0a120e, nieblaDist: 55,
     cielo: { top: 0x03050c, mid: 0x0b1220, abajo: 0x141c28 },
     sol: { dir: { x: 0.2, y: 0.6, z: 0.4 }, color: 0x8fb8ff, int: 0.36, luz: 0x8fb8ff, esNoche: true },
-    zombies: { caminantes: 4, velCam: 2.7, corredores: 4, velCor: 5.0, abominaciones: 1, velAbo: 1.7, maxVivos: 9, aggro: 26, intervalo: 4.5, radioSpawn: 34 },
+    zombies: { caminantes: 7, velCam: 2.9, corredores: 6, velCor: 5.2, abominaciones: 2, velAbo: 1.8, maxVivos: 14, aggro: 27, intervalo: 3.2, radioSpawn: 36 },
   },
   {
-    nombre: 'La Autopista del Caos', tema: 'autopista', largo: 310,
-    texto: '¡Los gatos cruzaron la autopista! Esquivar coches y corredores a la vez... vas a necesitar reflejos.',
+    nombre: 'La Autopista del Caos', tema: 'autopista', largo: 680, fotosReq: 4,
+    texto: '¡Los gatos cruzaron la autopista! Esquivar coches y corredores a la vez... y busca las 4 FOTOS 📸. Vas a necesitar reflejos.',
     encuentro: [
       ['Juan', '¡Cruzaron entre los coches! Si los pierdo otra vez... nos vamos directo a casa.'],
       ['Angie', 'Pues corre, porque la casa es el último refugio que nos queda.'],
     ],
-    niebla: 0xb8a888, nieblaDist: 120,
+    niebla: 0xb8a888, nieblaDist: 125,
     cielo: { top: 0x8a6a4a, mid: 0xd9a05e, abajo: 0xf5d9a8 },
     sol: { dir: { x: 0.8, y: 0.45, z: 0.3 }, color: 0xffd9a0, int: 1.15, luz: 0xffc98a },
-    zombies: { caminantes: 6, velCam: 2.9, corredores: 5, velCor: 5.4, abominaciones: 1, velAbo: 1.9, maxVivos: 11, aggro: 28, intervalo: 3.8, radioSpawn: 36 },
+    zombies: { caminantes: 9, velCam: 3.0, corredores: 7, velCor: 5.6, abominaciones: 2, velAbo: 2.0, maxVivos: 16, aggro: 29, intervalo: 2.8, radioSpawn: 38 },
   },
   {
-    nombre: 'El Centro Devastado', tema: 'centro', largo: 350,
-    texto: 'El corazón de la ciudad. La horda está por todas partes... pero la casa está cerca. ¡Misiones de Juan: atrapa 5 sushis y 3 mochis para el banquete familiar!',
+    nombre: 'El Centro Devastado', tema: 'centro', largo: 800, fotosReq: 4,
+    texto: 'El corazón de la ciudad. La horda está por todas partes... y El Devorador custodia la casa. Recoge las 4 FOTOS 📸 y las misiones de Juan: 5 sushis y 3 mochis para el banquete familiar.',
     encuentro: [],
-    niebla: 0xb59a78, nieblaDist: 130,
+    niebla: 0xb59a78, nieblaDist: 135,
     cielo: { top: 0x4a6fa5, mid: 0xc79a6a, abajo: 0xf2d9b0 },
     sol: { dir: { x: -0.6, y: 0.8, z: 0.2 }, color: 0xfff0d0, int: 1.35, luz: 0xffe8c0 },
-    zombies: { caminantes: 7, velCam: 3.1, corredores: 6, velCor: 5.8, abominaciones: 2, velAbo: 2.1, maxVivos: 14, aggro: 30, intervalo: 3.0, radioSpawn: 40 },
-    jefe: { nombre: 'EL DEVORADOR', vida: 1200, dano: 42, vel: 3.6, velFuria: 4.5 },
+    zombies: { caminantes: 10, velCam: 3.2, corredores: 8, velCor: 6.0, abominaciones: 3, velAbo: 2.2, maxVivos: 20, aggro: 31, intervalo: 2.2, radioSpawn: 42 },
+    jefe: { nombre: 'EL DEVORADOR', vida: 1800, dano: 48, vel: 3.8, velFuria: 4.8 },
   },
 ];
 
@@ -2018,28 +2044,56 @@ function construirAngieRealista(){
   return root;
 }
 
-function animarHumano(p, t, moviendo, enAire, correr, zombi){
+function animarHumano(p, t, moviendo, enAire, correr, zombi, dt){
+  dt = dt || 0.016;
   const P = p.userData.parts;
   const sed = p.userData.curvilinea;
+  const esAngie = p === jugador;
+  // BLEND SUAVE reposo ⇄ caminar ⇄ correr: el booleano moviendo es "duro"; este
+  // factor continuo hace que la zancada suba/baje gradualmente al arrancar/frenar
+  const metaBlend = moviendo ? 1 : 0;
+  const blendPrev = p.userData.blendMov !== undefined ? p.userData.blendMov : metaBlend;
+  const blend = lerp(blendPrev, metaBlend, Math.min(1, dt * (moviendo ? (correr ? 9 : 6) : 7)));
+  p.userData.blendMov = blend;
   if (zombi){
     const freq = correr ? 7 : 3.2;
-    const amp = correr ? 0.9 : 0.35;
+    const amp = correr ? 0.9 : 0.4;
+    // joroba de cada tipo (caminante 0.28, corredor 0.5, abominación 0.18): se
+    // guarda una vez para poder añadir balanceo sin aplanar la postura encorvada
+    if (P.pelvis.userData.zHunch === undefined) P.pelvis.userData.zHunch = P.pelvis.rotation.x;
     if (moviendo){
       P.piernaI.rotation.x = Math.sin(t * freq) * amp;
       P.piernaD.rotation.x = -Math.sin(t * freq) * amp;
-      P.piernaI.userData.rodilla.rotation.x = Math.max(0, -Math.sin(t * freq)) * 0.6 + 0.1;
-      P.piernaD.userData.rodilla.rotation.x = Math.max(0, Math.sin(t * freq)) * 0.6 + 0.1;
-      // brazos extendidos con vaivén
-      P.brazoI.rotation.x = -1.15 + Math.sin(t * freq * 0.8) * 0.12;
-      P.brazoD.rotation.x = -1.15 + Math.sin(t * freq * 0.8 + Math.PI) * 0.12;
-      P.pelvis.position.y = 0.92 + Math.abs(Math.sin(t * freq)) * 0.045;
-      P.pelvis.rotation.z = Math.sin(t * freq) * 0.04;
+      // rodillas con flexión natural, igual que la zancada humana: se doblan al
+      // llevar la pierna hacia delante para levantar el pie del suelo (antes se
+      // doblaban cuando la pierna iba atrás y la zancada quedaba rígida); al
+      // correr, el talón golpea el trasero al final del empuje
+      const flexRod = correr ? 0.55 : 0.42;
+      P.piernaI.userData.rodilla.rotation.x = Math.max(0, Math.sin(t * freq)) * flexRod + 0.08;
+      P.piernaD.userData.rodilla.rotation.x = Math.max(0, -Math.sin(t * freq)) * flexRod + 0.08;
+      if (correr){
+        P.piernaI.userData.rodilla.rotation.x += Math.max(0, -Math.sin(t * freq)) * 0.4;
+        P.piernaD.userData.rodilla.rotation.x += Math.max(0, Math.sin(t * freq)) * 0.4;
+      }
+      // brazos extendidos (la marca del zombi) con vaivén más vivo y una ligera
+      // flexión de codo para que no parezcan palos rígidos
+      P.brazoI.rotation.x = -1.15 + Math.sin(t * freq * 0.8) * 0.16;
+      P.brazoD.rotation.x = -1.15 + Math.sin(t * freq * 0.8 + Math.PI) * 0.16;
+      if (P.brazoI.userData.codo && P.brazoD.userData.codo){
+        P.brazoI.userData.codo.rotation.x = -0.18 + Math.sin(t * freq * 0.8) * 0.1;
+        P.brazoD.userData.codo.rotation.x = -0.18 + Math.sin(t * freq * 0.8 + Math.PI) * 0.1;
+      }
+      // cadera y rebote orgánicos: contoneo torpe al caminar, más brusco al correr
+      P.pelvis.position.y = 0.92 + Math.abs(Math.sin(t * freq)) * (correr ? 0.06 : 0.05);
+      P.pelvis.rotation.z = Math.sin(t * freq) * (correr ? 0.09 : 0.06);
+      P.pelvis.rotation.x = P.pelvis.userData.zHunch + Math.sin(t * freq * 0.5) * 0.03;
     } else {
       P.piernaI.rotation.x *= 0.9; P.piernaD.rotation.x *= 0.9;
       P.brazoI.rotation.x = -1.15 + Math.sin(t * 2.2) * 0.1;
       P.brazoD.rotation.x = -1.15 + Math.sin(t * 2.2 + Math.PI) * 0.1;
       P.pelvis.position.y = 0.92 + Math.sin(t * 2.2) * 0.02;
       P.pelvis.rotation.z = 0;
+      P.pelvis.rotation.x = P.pelvis.userData.zHunch;
     }
     P.cabeza.rotation.z = Math.sin(t * 1.7) * 0.12;
     P.cabeza.rotation.x = -0.5 + Math.sin(t * 2.1) * 0.06;
@@ -2052,36 +2106,80 @@ function animarHumano(p, t, moviendo, enAire, correr, zombi){
     return;
   }
   if (enAire){
-    P.piernaI.rotation.x = 0.55; P.piernaD.rotation.x = -0.35;
-    P.piernaI.userData.rodilla.rotation.x = 0.5; P.piernaD.userData.rodilla.rotation.x = 0.2;
-    P.brazoI.rotation.x = -1.6; P.brazoD.rotation.x = -0.5;
+    // pose de salto: la pierna de delante se recoge con la rodilla arriba y la
+    // de atrás se estira; el torso se inclina un poco hacia delante
+    P.piernaI.rotation.x = 0.62; P.piernaD.rotation.x = -0.32;
+    P.piernaI.userData.rodilla.rotation.x = 0.72; P.piernaD.userData.rodilla.rotation.x = 0.25;
+    P.brazoI.rotation.x = -1.45; P.brazoD.rotation.x = -0.45;
+    if (P.brazoI.userData.codo){
+      P.brazoI.userData.codo.rotation.x = -0.6;
+      P.brazoD.userData.codo.rotation.x = -0.35;
+    }
+    P.torso.rotation.x = -0.12;
+    P.cabeza.rotation.x = -0.06;
     P.pelvis.position.y = 0.92;
     return;
   }
+  // inclinación natural del torso al correr/caminar (suavizada para no saltar al
+  // arrancar o frenar): el cuerpo se echa ligeramente hacia delante al correr
+  const leanMeta = correr ? -0.16 : (moviendo ? -0.04 : 0);
+  const leanAct = p.userData.leanT !== undefined ? p.userData.leanT : 0;
+  p.userData.leanT = lerp(leanAct, leanMeta, 0.15);
+  P.torso.rotation.x = p.userData.leanT;
   if (moviendo){
     const freq = correr ? 11 : 7;
-    const amp = correr ? 0.9 : 0.62;
-    P.piernaI.rotation.x = Math.sin(t * freq) * amp;
-    P.piernaD.rotation.x = -Math.sin(t * freq) * amp;
-    P.piernaI.userData.rodilla.rotation.x = Math.max(0, -Math.sin(t * freq)) * 0.8 + 0.08;
-    P.piernaD.userData.rodilla.rotation.x = Math.max(0, Math.sin(t * freq)) * 0.8 + 0.08;
-    P.brazoI.rotation.x = -Math.sin(t * freq) * amp * 0.85;
-    P.brazoD.rotation.x = Math.sin(t * freq) * amp * 0.85;
+    // Angie avanza su fase de marcha por DISTANCIA recorrida (gaitFase, ver
+    // actualizarJugador): así sus pies se "plantan" en el suelo al acelerar y
+    // frenar en vez de deslizar (foot-skating). El resto (zombis/Juan) usa reloj.
+    const faseAngie = p.userData.gaitFase !== undefined ? p.userData.gaitFase : t;
+    const sZ = esAngie ? Math.sin(faseAngie) : Math.sin(t * freq);
+    const sZ2 = esAngie ? Math.sin(faseAngie * 0.5 + 1.2) : Math.sin(t * freq * 0.5 + 1.2);
+    // factor caminar→correr suavizado (0 al paso, 1 esprintando): mezcla de forma
+    // progresiva frecuencia, amplitud, rebote y balanceo de brazos
+    // mezcla caminar→correr: solo Angie lo hace de forma progresiva según su
+    // velocidad suavizada; el resto conserva el salto binario original
+    const velS = esAngie ? (p.userData.velSmooth || 0) : (correr ? 11.2 : 6.8);
+    const runF = esAngie ? clamp((velS - 5.2) / 6, 0, 1) : (correr ? 1 : 0);
+    const bA = esAngie ? (0.25 + 0.75 * blend) : 1; // blend suave de arranque/parada
+    const amp = lerp(0.62, 0.9, runF) * bA;
+    P.piernaI.rotation.x = sZ * amp;
+    P.piernaD.rotation.x = -sZ * amp;
+    // rodillas: se doblan cuando la pierna va ADELANTE (fase de oscilación) para
+    // levantar el pie del suelo, y se enderezan cuando va ATRÁS (fase de empuje).
+    const flexRod = lerp(0.45, 0.55, runF);
+    const baseRod = 0.05;
+    P.piernaI.userData.rodilla.rotation.x = Math.max(0, sZ) * flexRod + baseRod;
+    P.piernaD.userData.rodilla.rotation.x = Math.max(0, -sZ) * flexRod + baseRod;
+    // al correr, el talón golpea el trasero al final del empuje: la rodilla se
+    // dobla también cuando la pierna va hacia atrás, como en la zancada real
+    P.piernaI.userData.rodilla.rotation.x += Math.max(0, -sZ) * 0.42 * runF;
+    P.piernaD.userData.rodilla.rotation.x += Math.max(0, sZ) * 0.42 * runF;
+    // brazos: balanceo natural, más contenido al caminar y más amplio al correr
+    const armMult = lerp(0.62, 0.85, runF);
+    P.brazoI.rotation.x = -sZ * amp * armMult;
+    P.brazoD.rotation.x = sZ * amp * armMult;
+    // flexión natural de codos al caminar/correr: el antebrazo no queda rígido,
+    // las manos se mueven con el paso en vez de colgar rectas
+    const flexCodo = lerp(0.35, 0.55, runF);
+    if (P.brazoI.userData.codo){
+      P.brazoI.userData.codo.rotation.x = -flexCodo + sZ * 0.14;
+      P.brazoD.userData.codo.rotation.x = -flexCodo - sZ * 0.14;
+    }
     // al correr, la silueta curvilínea rebota más, con balanceo de cadera
-    const pelvisY = sed ? 0.105 : 0.05;
-    P.pelvis.position.y = 0.92 + Math.abs(Math.sin(t * freq)) * pelvisY;
-    P.pelvis.rotation.z = Math.sin(t * freq) * (sed ? 0.15 : 0.05);
-    P.pelvis.rotation.x = sed ? Math.sin(t * freq * 0.5 + 1.2) * 0.09 : 0;
-    // física realista para senos y nalgas (solo Angie)
+    const pelvisY = lerp(sed ? 0.105 : 0.05, sed ? 0.125 : 0.08, runF);
+    P.pelvis.position.y = 0.92 + Math.abs(sZ) * pelvisY * bA;
+    P.pelvis.rotation.z = sZ * (sed ? 0.15 : 0.05) * bA;
+    P.pelvis.rotation.x = sed ? sZ2 * 0.09 : 0;
+    // física realista para senos y nalgas (solo Angie), con el dt real del frame
     if (sed && P.pelvis.userData.fisica) {
       const fis = P.pelvis.userData.fisica;
-      const pelvisDelta = Math.sin(t * freq) * pelvisY * 0.5; // movimiento de la pelvis
+      const pelvisDelta = sZ * pelvisY * 0.5; // movimiento de la pelvis
       // senos rebotan con inercia
       for (let i = 0; i < 2; i++) {
         const spring = fis.busto[i];
         const fuerza = -spring.k * spring.x - spring.d * spring.v + pelvisDelta * 60;
-        spring.v += fuerza * 0.016; // dt = 0.016 (60fps)
-        spring.x += spring.v * 0.016;
+        spring.v += fuerza * dt;
+        spring.x += spring.v * dt;
         // Limitar el rebote
         spring.x = Math.max(-0.08, Math.min(0.08, spring.x));
       }
@@ -2089,8 +2187,8 @@ function animarHumano(p, t, moviendo, enAire, correr, zombi){
       for (let i = 0; i < 2; i++) {
         const spring = fis.nalgas[i];
         const fuerza = -spring.k * spring.x - spring.d * spring.v + pelvisDelta * 40;
-        spring.v += fuerza * 0.016;
-        spring.x += spring.v * 0.016;
+        spring.v += fuerza * dt;
+        spring.x += spring.v * dt;
         spring.x = Math.max(-0.06, Math.min(0.06, spring.x));
       }
       // Aplicar a los senos
@@ -2101,14 +2199,21 @@ function animarHumano(p, t, moviendo, enAire, correr, zombi){
         P.pelvis.userData.busto[1].position.x = 0.088 + fis.busto[1].x * 0.3;
       }
     }
-    P.cabeza.rotation.x = 0;
+    // al correr la cabeza mira ligeramente al frente; al caminar casi nivelada
+    P.cabeza.rotation.x = (correr ? -0.1 : -0.02) * bA;
   } else {
     P.piernaI.rotation.x *= 0.85; P.piernaD.rotation.x *= 0.85;
     P.brazoI.rotation.x *= 0.85; P.brazoD.rotation.x *= 0.85;
+    // relajar la flexión del codo al detenerse, con una pose relajada (ligera flexión)
+    if (P.brazoI.userData.codo && P.brazoD.userData.codo){
+      P.brazoI.userData.codo.rotation.x *= 0.85;
+      P.brazoD.userData.codo.rotation.x *= 0.85;
+    }
     P.pelvis.position.y = 0.92 + Math.sin(t * 2.4) * (sed ? 0.04 : 0.02);
     P.pelvis.rotation.z = sed ? Math.sin(t * 1.7) * 0.05 : 0;
     P.pelvis.rotation.x = sed ? Math.sin(t * 1.3) * 0.035 : 0;
-    // física para rebote en reposo
+    // respiración en reposo: el pecho se expande sutilmente (se propaga al GLB
+    // porque sincronizarAngieGLB copia la posición mundial del busto)
     if (sed && P.pelvis.userData.fisica) {
       const fis = P.pelvis.userData.fisica;
       const pelvisDelta = Math.sin(t * 2.4) * 0.04 * 0.5;
@@ -2116,23 +2221,81 @@ function animarHumano(p, t, moviendo, enAire, correr, zombi){
       for (let i = 0; i < 2; i++) {
         const spring = fis.busto[i];
         const fuerza = -spring.k * spring.x - spring.d * spring.v + pelvisDelta * 30;
-        spring.v += fuerza * 0.016;
-        spring.x += spring.v * 0.016;
+        spring.v += fuerza * dt;
+        spring.x += spring.v * dt;
         spring.x = Math.max(-0.04, Math.min(0.04, spring.x));
       }
       // nalgas con rebote sutil
       for (let i = 0; i < 2; i++) {
         const spring = fis.nalgas[i];
         const fuerza = -spring.k * spring.x - spring.d * spring.v + pelvisDelta * 20;
-        spring.v += fuerza * 0.016;
-        spring.x += spring.v * 0.016;
+        spring.v += fuerza * dt;
+        spring.x += spring.v * dt;
         spring.x = Math.max(-0.03, Math.min(0.03, spring.x));
       }
-      // Aplicar a los senos en reposo
+      // Aplicar a los senos en reposo + respiración del pecho
       if (P.pelvis.userData.busto) {
-        P.pelvis.userData.busto[0].position.y = 0.38 + fis.busto[0].x * 0.3;
-        P.pelvis.userData.busto[1].position.y = 0.38 + fis.busto[1].x * 0.3;
+        const resp = Math.sin(t * 2.1) * 0.012;
+        P.pelvis.userData.busto[0].position.y = 0.38 + fis.busto[0].x * 0.3 + resp;
+        P.pelvis.userData.busto[1].position.y = 0.38 + fis.busto[1].x * 0.3 + resp;
       }
+    }
+  }
+  // ===== OVERLAYS SOLO ANGIE (se aplican sobre la marcha/idle) =====
+  // NOTA: la pelvis se resta (se resetea a ~0.92 cada frame en las ramas de
+  // marcha/reposo, así que no acumula), mientras que rodillas/muslos/torso se
+  // interpolan (lerp) hacia un OBJETIVO: en reposo no se resetean cada frame y
+  // un "+=" se acumularía sin límite (en pruebas se vieron rodillas a 27 rad).
+  if (esAngie){
+    // AGACHADO real: baja la pelvis y flexiona rodillas, muslos y torso (antes se
+    // aplastaba el modelo entero con scale.y, que ni siquiera se propagaba al GLB;
+    // ahora la flexión se copia hueso a hueso y Angie se agacha de verdad)
+    if (agachadoK > 0.01){
+      const k = agachadoK;
+      const vA = Math.min(1, dt * 10);
+      P.pelvis.position.y -= 0.2 * k;
+      if (P.piernaI.userData.rodilla) P.piernaI.userData.rodilla.rotation.x = lerp(P.piernaI.userData.rodilla.rotation.x, 0.9 * k, vA);
+      if (P.piernaD.userData.rodilla) P.piernaD.userData.rodilla.rotation.x = lerp(P.piernaD.userData.rodilla.rotation.x, 0.9 * k, vA);
+      P.piernaI.rotation.x = lerp(P.piernaI.rotation.x, 0.3 * k, vA);
+      P.piernaD.rotation.x = lerp(P.piernaD.rotation.x, 0.3 * k, vA);
+      P.torso.rotation.x = lerp(P.torso.rotation.x, 0.28 * k, vA);
+      P.cabeza.rotation.x = lerp(P.cabeza.rotation.x, 0.1 * k, vA);
+    }
+    // FLINCH al recibir daño: torso atrás, cabeza atrás y brazos al pecho, breve
+    if (p.userData.flinch > 0){
+      const e = Math.min(1, p.userData.flinch / 0.45);
+      const q = e * e;
+      const vF = Math.min(1, dt * 14);
+      P.torso.rotation.x = lerp(P.torso.rotation.x, 0.3 * q, vF);
+      P.cabeza.rotation.x = lerp(P.cabeza.rotation.x, 0.15 * q, vF);
+      P.brazoI.rotation.x = lerp(P.brazoI.rotation.x, 0.8 * q, vF);
+      P.brazoD.rotation.x = lerp(P.brazoD.rotation.x, 0.8 * q, vF);
+      if (P.brazoI.userData.codo && P.brazoD.userData.codo){
+        P.brazoI.userData.codo.rotation.x = lerp(P.brazoI.userData.codo.rotation.x, -1.0 * q, vF);
+        P.brazoD.userData.codo.rotation.x = lerp(P.brazoD.userData.codo.rotation.x, -1.0 * q, vF);
+      }
+    }
+    // ATERRIZAJE con peso: rodillas y torso ceden con la caída (se decae en
+    // actualizarJugador al tocar el suelo)
+    if (aterrizajeT > 0){
+      const q = Math.min(1, aterrizajeT / 0.28);
+      const e = q * q;
+      const vL = Math.min(1, dt * 12);
+      P.pelvis.position.y -= 0.14 * e;
+      if (P.piernaI.userData.rodilla) P.piernaI.userData.rodilla.rotation.x = lerp(P.piernaI.userData.rodilla.rotation.x, 0.8 * e, vL);
+      if (P.piernaD.userData.rodilla) P.piernaD.userData.rodilla.rotation.x = lerp(P.piernaD.userData.rodilla.rotation.x, 0.8 * e, vL);
+      P.piernaI.rotation.x = lerp(P.piernaI.rotation.x, 0.35 * e, vL);
+      P.piernaD.rotation.x = lerp(P.piernaD.rotation.x, 0.35 * e, vL);
+      P.torso.rotation.x = lerp(P.torso.rotation.x, 0.18 * e, vL);
+    }
+    // GIRO: el cuerpo lidera las curvas — el torso adelanta la rotación, la
+    // cabeza contra-rota para mantener la mirada y la pelvis se inclina (banking)
+    if (!enAire && !S.swing && !S.patadaAnim){
+      const vY = clamp(p.userData.velYaw || 0, -6, 6);
+      const intensidad = Math.min(1, Math.abs(vY) / 2.5) * (0.35 + 0.65 * blend);
+      P.torso.rotation.y = clamp(vY * 0.22, -0.7, 0.7) * intensidad;
+      P.cabeza.rotation.y = clamp(-vY * 0.16, -0.5, 0.5) * intensidad;
+      P.pelvis.rotation.z += clamp(vY * 0.1, -0.3, 0.3) * intensidad;
     }
   }
 }
@@ -2301,7 +2464,7 @@ function crearZombi(tipo, x, z){
     m: m, tipo: tipo, vel: 0,
     estado: esTumbado ? 'levantandose' : 'deambular',
     aggroR: 22, ataqueR: esAbo ? 2.1 : 1.5, cooldownAtaque: 0,
-    stun: 0, windup: 0, balanceo: rand(0, 10), origen: { x: x, z: z },
+    stun: 0, windup: 0, zarpazoListo: false, ataqueAnim: null, balanceo: rand(0, 10), origen: { x: x, z: z },
     daño: esAbo ? 30 : (esCorredor ? 15 : 12),
     atacado: 0,
     vida: esAbo ? 320 : (esCorredor ? 70 : (tipo === 'tumbado' ? 60 : 90)),
@@ -2397,6 +2560,26 @@ function actualizarZombis(dt, t){
     }
     if (z.cooldownAtaque > 0) z.cooldownAtaque -= dt;
     if (z.windup > 0) z.windup -= dt;
+    // el zarpazo conecta al terminar la preparación (solo si el zombi sigue en rango)
+    if (z.zarpazoListo && z.windup <= 0){
+      z.zarpazoListo = false;
+      if (d < z.ataqueR){
+        z.ataqueAnim = { t: 0, dur: 0.32 };
+        z.cooldownAtaque = 1.3;
+        dañarJugador(z.daño);
+        const dx = jug.x - z.m.position.x, dz = jug.z - z.m.position.z;
+        const l = Math.sqrt(dx * dx + dz * dz) || 1;
+        z.m.position.x += (dx / l) * 0.3; // embestida corta del zarpazo
+        z.m.position.z += (dz / l) * 0.3;
+        // no se pega del todo a Angie: mantiene un pequeño espacio tras el golpe
+        const dx2 = jug.x - z.m.position.x, dz2 = jug.z - z.m.position.z;
+        const d2 = Math.sqrt(dx2 * dx2 + dz2 * dz2) || 1;
+        if (d2 < 0.7){
+          z.m.position.x = jug.x - (dx2 / d2) * 0.7;
+          z.m.position.z = jug.z - (dz2 / d2) * 0.7;
+        }
+      }
+    }
 
     // aggro (el sigilo reduce la detección, el esprint la aumenta)
     const aggroReal = cfg.aggro * S.deteccionMult;
@@ -2420,22 +2603,22 @@ function actualizarZombis(dt, t){
       } else {
         const dx = jug.x - z.m.position.x, dz = jug.z - z.m.position.z;
         const l = Math.sqrt(dx * dx + dz * dz) || 1;
-        const wob = Math.sin(t * 3 + z.balanceo) * 0.25;
-        z.m.position.x += (dx / l) * z.vel * dt + wob * dt;
-        z.m.position.z += (dz / l) * z.vel * dt;
+        // durante el zarpazo (preparación + golpe) el zombi se detiene a atacar
+        const atacando = z.windup > 0 || !!z.ataqueAnim;
+        if (!atacando){
+          const wob = Math.sin(t * 3 + z.balanceo) * 0.25;
+          z.m.position.x += (dx / l) * z.vel * dt + wob * dt;
+          z.m.position.z += (dz / l) * z.vel * dt;
+        }
         const objetivo = Math.atan2(dx, dz);
         z.m.rotation.y = angLerp(z.m.rotation.y, objetivo, Math.min(1, dt * 5));
-        animarHumano(z.m, t + z.balanceo, true, false, z.tipo === 'corredor', true);
-        // ataque
-        if (d < z.ataqueR && z.cooldownAtaque <= 0){
-          if (z.windup <= 0) z.windup = 0.38;
-          else {
-            z.windup = 0;
-            z.cooldownAtaque = 1.3;
-            dañarJugador(z.daño);
-            z.m.position.x -= (dx / l) * 0.35;
-            z.m.position.z -= (dz / l) * 0.35;
-          }
+        animarHumano(z.m, t + z.balanceo, !atacando, false, z.tipo === 'corredor', true);
+        if (atacando) animarZarpazoZombi(z, dt);
+        // ataque: prepara el zarpazo (la preparación se descuenta en el bucle y el
+        // golpe conecta al terminar, en el bloque del zarpazoListo de arriba)
+        if (d < z.ataqueR && z.cooldownAtaque <= 0 && z.windup <= 0 && !z.zarpazoListo && !z.ataqueAnim){
+          z.windup = 0.38;
+          z.zarpazoListo = true;
         }
       }
     } else if (z.estado === 'deambular'){
@@ -2515,6 +2698,8 @@ function aturdirZombi(z, potencia){
   z.stun = Math.max(z.stun, 1.7);
   z.cooldownAtaque = Math.max(z.cooldownAtaque, 1.2);
   z.windup = 0;
+  z.zarpazoListo = false; // aturdido: cancela el zarpazo en curso
+  z.ataqueAnim = null;
   const dx = z.m.position.x - jugador.position.x;
   const dz = z.m.position.z - jugador.position.z;
   const l = Math.sqrt(dx * dx + dz * dz) || 1;
@@ -2522,29 +2707,71 @@ function aturdirZombi(z, potencia){
   z.m.position.z += (dz / l) * potencia;
 }
 
+/* Zarpazo zombi: animación de ataque propia, distinta a la marcha.
+   Fase 1 (z.windup > 0): preparación — el zombi se detiene, echa el cuerpo
+   atrás y lleva las garras a la altura del pecho, listo para golpear.
+   Fase 2 (z.ataqueAnim): el golpe — el brazo derecho se lanza al frente en un
+   zarpazo seco con el torso acompañando y la pierna adelantándose. */
+function animarZarpazoZombi(z, dt){
+  const P = z.m.userData.parts;
+  // base del torso (la joroba de construcción: 0.12) para devolverlo al final
+  if (z.torsoBase === undefined) z.torsoBase = P.torso.rotation.x || 0.12;
+  if (z.windup > 0){
+    const pr = 1 - Math.max(0, z.windup) / 0.38; // 0→1 mientras prepara
+    const atras = 0.7 + pr * 0.45;               // el brazo va cada vez más atrás
+    const k = Math.min(1, dt * 12);              // desliza en vez de saltar
+    P.brazoI.rotation.x = lerp(P.brazoI.rotation.x, atras, k);
+    P.brazoD.rotation.x = lerp(P.brazoD.rotation.x, atras, k);
+    if (P.brazoI.userData.codo){
+      P.brazoI.userData.codo.rotation.x = lerp(P.brazoI.userData.codo.rotation.x, -0.6 - pr * 0.35, k);
+      P.brazoD.userData.codo.rotation.x = lerp(P.brazoD.userData.codo.rotation.x, -0.6 - pr * 0.35, k);
+    }
+    P.torso.rotation.x = lerp(P.torso.rotation.x, 0.26, k); // cuerpo atrás, para impulsar
+  } else if (z.ataqueAnim){
+    z.ataqueAnim.t += dt;
+    const pr = Math.min(1, z.ataqueAnim.t / z.ataqueAnim.dur);
+    const ease = pr < 0.5 ? 2 * pr * pr : 1 - Math.pow(-2 * pr + 2, 2) / 2;
+    P.brazoD.rotation.x = 1.15 - ease * 2.7;  // de atrás (1.15) a adelante (-1.55)
+    P.brazoI.rotation.x = 1.15 - ease * 1.4;  // el izquierdo acompaña menos
+    if (P.brazoI.userData.codo){
+      P.brazoD.userData.codo.rotation.x = -0.7 + ease * 0.55; // la garra se estira al golpear
+      P.brazoI.userData.codo.rotation.x = -0.7 + ease * 0.35;
+    }
+    // torso: empuja al frente al golpear y vuelve a su joroba al final del zarpazo
+    const v = 0.26 - ease * 0.5;
+    const retorno = Math.max(0, (pr - 0.6) / 0.4);
+    P.torso.rotation.x = v + retorno * (z.torsoBase - v);
+    P.torso.rotation.y = -Math.sin(pr * Math.PI) * 0.3; // rota el cuerpo con el zarpazo
+    if (pr >= 1) z.ataqueAnim = null;
+  }
+}
+
 /* ===================== ARMAS Y COMBATE ===================== */
 function crearModeloArma(tipo){
   const g = new THREE.Group();
   const M = c => new THREE.MeshLambertMaterial({ color: c });
   if (tipo === 'bate'){
+    // el origen del grupo (0,0,0) es el punto donde se cierra el puño: el resto
+    // del bate cuelga hacia -Y (como el brazo en reposo) para que no quede
+    // superpuesto al brazo, sino colgando libre desde la mano
     const palo = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.06, 0.74, 8), M(0x8a5a2b));
-    palo.position.set(0, 0.37, 0); palo.castShadow = true; g.add(palo);
+    palo.position.set(0, -0.37, 0); palo.castShadow = true; g.add(palo);
     const mango = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.26, 8), M(0x6e4420));
-    mango.position.set(0, 0.02, 0); g.add(mango);
+    mango.position.set(0, -0.02, 0); g.add(mango);
     const pomo = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.06, 8), M(0x4a2f14));
-    pomo.position.set(0, -0.12, 0); g.add(pomo);
+    pomo.position.set(0, 0.12, 0); g.add(pomo);
   } else if (tipo === 'machete'){
     const hoja = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.52, 0.016), M(0xcfd4da));
-    hoja.position.set(0, 0.44, 0); hoja.rotation.z = 0.07; hoja.castShadow = true; g.add(hoja);
+    hoja.position.set(0, -0.44, 0); hoja.rotation.z = -0.07; hoja.castShadow = true; g.add(hoja);
     const mango = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.034, 0.2, 8), M(0x3a2a18));
-    mango.position.set(0, 0.08, 0); g.add(mango);
+    mango.position.set(0, -0.08, 0); g.add(mango);
   } else if (tipo === 'pala'){
     const palo = new THREE.Mesh(new THREE.CylinderGeometry(0.034, 0.042, 0.88, 8), M(0x7a6a52));
-    palo.position.set(0, 0.36, 0); palo.castShadow = true; g.add(palo);
+    palo.position.set(0, -0.36, 0); palo.castShadow = true; g.add(palo);
     const mango = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.2, 8), M(0x4a3a28));
-    mango.position.set(0, -0.04, 0); g.add(mango);
+    mango.position.set(0, 0.04, 0); g.add(mango);
     const hojaPala = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.3, 0.03), M(0x8d8d92));
-    hojaPala.position.set(0, 0.78, 0); hojaPala.rotation.z = 0.12; hojaPala.castShadow = true; g.add(hojaPala);
+    hojaPala.position.set(0, -0.78, 0); hojaPala.rotation.z = -0.12; hojaPala.castShadow = true; g.add(hojaPala);
   } else if (tipo === 'pistola'){
     // cañón (apunta hacia +Y; se rota para mirar adelante al equipar)
     const canon = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.036, 0.34, 8), M(0x2a2d31));
@@ -2576,12 +2803,21 @@ function equiparArma(tipo){
     grupo.rotation.x = -Math.PI / 2 + 0.06;
     grupo.rotation.z = -0.1;
   } else {
-    grupo.position.set(0.02, -0.68, 0.06);
-    grupo.rotation.x = -0.25;
-    grupo.rotation.z = -0.15;
+    // el arma cuelga desde el puño, girada levemente hacia afuera y adelante
+    // para separarla visualmente del brazo (ya no queda "pegada" a él)
+    grupo.position.set(0.06, -0.66, 0.09);
+    grupo.rotation.x = -0.22;
+    grupo.rotation.y = 0.14;
+    grupo.rotation.z = -0.2;
   }
   jugador.userData.parts.brazoD.add(grupo);
   jugador.userData.armaGrupo = grupo;
+  // base del arma: guardada para el sway (micro-baile del arma con el paso y la
+  // respiración) que se aplica cada frame en actualizarJugador
+  grupo.userData.base = {
+    x: grupo.position.x, y: grupo.position.y, z: grupo.position.z,
+    rx: grupo.rotation.x, ry: grupo.rotation.y, rz: grupo.rotation.z
+  };
   actualizarIndicadorArma();
 }
 function teclaArma(tipo){ return tipo === 'bate' ? '1' : (tipo === 'machete' ? '2' : (tipo === 'pala' ? '3' : '4')); }
@@ -4263,7 +4499,7 @@ function actualizarSushis(dt){
 }
 function actualizarSushiJuan(dt, tGlobal){
   // solo en el nivel final, mientras se juega y los gatos no han escapado
-  if (S.nivel !== 4 || S.estado !== 'jugando' || escape || !juan) return;
+  if (S.nivel !== 5 || S.estado !== 'jugando' || escape || !juan) return;
   // globo de diálogo: sigue a Juan y se desvanece
   if (S.burbuja){
     S.burbujaT -= dt;
@@ -4647,7 +4883,9 @@ let spawnTimer = 0;
 let escape = null;
 let camaraCine = null;
 let tGlobal = 0;
-let pasoTimer = 0;
+// salto con peso: buffer (pulsar antes de aterrizar), coyote time (saltar un
+// instante tras salir del suelo) y altura variable (se corta al soltar Espacio)
+let jumpBuffer = 0, coyoteT = 0, aterrizajeT = 0, agachadoK = 0;
 const teclas = {};
 
 /* ===== MODELO GLB DE ANGIE (muñeca 3D real, con fallback al modelo procedural) ===== */
@@ -4677,6 +4915,17 @@ function buscarHuesos(glbRoot){
   return h;
 }
 
+// busca cualquier nodo por nombre aceptando el ':' de Mixamo (mixamorig:Head
+// o mixamorigHead); usado para medir el modelo antes de tener el mapa de huesos
+function buscarPorNombre(root, nombre){
+  let encontrado = null;
+  const target = (nombre || '').replace(/:/g, '');
+  root.traverse(o => {
+    if (!encontrado && o.name && o.name.replace(/:/g, '') === target) encontrado = o;
+  });
+  return encontrado;
+}
+
 // quaternion base que lleva cada hueso de la T-pose a la pose colgada (reposo del juego)
 function calcularQColgado(huesos){
   const q = {};
@@ -4694,15 +4943,70 @@ function calcularQColgado(huesos){
   return q;
 }
 
+// textura de ojos anime (grande, brillante) reutilizada por el modelo procedural
+// y por la cara que se superpone al modelo GLB
+function crearTexturaOjosAnime() {
+  const W = 256, H = 128;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+  for (const s of [-1, 1]) {
+    const cx = W/2 + s * W * 0.28;
+    const cy = H * 0.52;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 48, 36, 0, 0, Math.PI*2);
+    ctx.fill();
+    const grad = ctx.createRadialGradient(cx, cy-4, 2, cx, cy, 32);
+    grad.addColorStop(0, '#6699dd');
+    grad.addColorStop(0.4, '#3366aa');
+    grad.addColorStop(0.7, '#224488');
+    grad.addColorStop(1, '#1a3366');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 30, 32, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = '#0a0a0a';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy+2, 12, 14, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.beginPath();
+    ctx.ellipse(cx - 10, cy - 12, 8, 6, -0.3, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.beginPath();
+    ctx.ellipse(cx + 8, cy + 6, 4, 3, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = '#0a0a0a';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - 30, 52, 10, 0, 0, Math.PI);
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#1a1a1a';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + 30, 42, 5, 0, Math.PI, Math.PI*2);
+    ctx.stroke();
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.flipY = false;
+  return tex;
+}
+
 function cargarAngieGLB(){
   if (!window.THREE || !THREE.GLTFLoader) return;
   const loader = new THREE.GLTFLoader();
-  const fuentes = ['xbot.glb', 'michelle.glb'];
+  // Michelle: modelo Mixamo con cuerpo, ropa y pelo reales esculpidos y texturizados
+  // (mucho más natural que el maniquí liso de Xbot). Xbot queda como respaldo
+  // por si Michelle no llega a cargar.
+  const fuentes = ['michelle.glb', 'xbot.glb'];
   let intento = 0;
-  function probar(){
-    if (intento >= fuentes.length) return;
-    loader.load(fuentes[intento], gltf => {
-      try{
+  // Procesamiento común: recibe el gltf ya cargado y lo prepara (esqueleto,
+  // centrado, cel-shading, correcciones por hueso, etc.). También lo usamos con
+  // la copia embebida en base64 (michelle_b64.js) cuando el navegador bloquea la
+  // descarga del .glb por el protocolo file://.
+  function procesarAngieGLB(gltf, esMichelle, nombreFuente){
+    try{
         // IMPORTANTE: no escalar gltf.scene directamente — las bind-inverse del
         // esqueleto se calcularon sin escala y la malla se rompería. Envolvemos el
         // modelo en un Group y aplicamos escala/offset al wrapper.
@@ -4710,30 +5014,50 @@ function cargarAngieGLB(){
         const root = new THREE.Group();
         root.name = 'angie-glb';
         root.add(modelo);
-        // medir con HUESOS (el Box3 ignora la deformación del skin): el esqueleto
-        // del Xbot está en centímetros con Armature a escala 0.01, así que medimos
-        // en el espacio mundial actual del modelo (antes de escalar el wrapper)
+        // ubicar los huesos clave ANTES de tocar ninguna transformación, para poder
+        // medir qué rotación trae ya "horneada" el archivo (ver abajo)
         modelo.updateMatrixWorld(true);
         const vH = new THREE.Vector3();
-        const cabezaH = modelo.getObjectByName('mixamorigHead');
-        const pieIH = modelo.getObjectByName('mixamorigLeftFoot');
-        const pieDH = modelo.getObjectByName('mixamorigRightFoot');
-        const manoIH = modelo.getObjectByName('mixamorigLeftHand');
-        const manoDH = modelo.getObjectByName('mixamorigRightHand');
-        const pelvisH = modelo.getObjectByName('mixamorigHips');
+        const cabezaH = buscarPorNombre(modelo, 'mixamorigHead');
+        const pieIH = buscarPorNombre(modelo, 'mixamorigLeftFoot');
+        const pieDH = buscarPorNombre(modelo, 'mixamorigRightFoot');
+        const manoIH = buscarPorNombre(modelo, 'mixamorigLeftHand');
+        const manoDH = buscarPorNombre(modelo, 'mixamorigRightHand');
+        const pelvisH = buscarPorNombre(modelo, 'mixamorigHips');
+        // CORRECCIÓN DE ORIENTACIÓN (se aplica ANTES de medir posiciones): el Xbot
+        // apunta +X y necesita -90° en Y para mirar hacia +Z (adelante del juego).
+        // Michelle trae su propio nodo "Character" con una rotación de 90° ya
+        // horneada de fábrica (conversión de ejes Z-up de Blender a Y-up), y el resto
+        // del sistema (qColgado, la conversión de brazos/piernas en copiarOrientacion)
+        // está calibrado asumiendo la jerarquía "limpia" de Xbot. En vez de asumir
+        // que nunca hay rotación horneada, la MEDIMOS y calculamos la rotación exacta
+        // que hay que aplicarle a "modelo" para CANCELARLA y dejar el mismo resultado
+        // final que tendría Xbot — así cualquier modelo con una jerarquía distinta
+        // (con o sin nodos intermedios rotados) queda igual de bien alineado.
+        // IMPORTANTE: la rotación debe fijarse antes de medir/centrar posiciones, no
+        // después — medir en la orientación vieja y luego rotar desplaza el pivote
+        // de rotación (el origen local de "modelo") respecto al punto medido,
+        // descuadrando el centrado; con jerarquías de coordenadas grandes (como el
+        // nodo "Character" de Michelle) ese error se vuelve enorme y deforma el cuerpo.
+        modelo.rotation.y = esMichelle ? 0 : -Math.PI / 2;
+        // medir con HUESOS (el Box3 ignora la deformación del skin): el esqueleto
+        // de estos modelos Mixamo puede venir en centímetros con Armature a escala
+        // 0.01, así que medimos en el espacio mundial actual del modelo (antes de
+        // escalar el wrapper, y ya con la rotación de arriba aplicada). buscarPorNombre
+        // acepta nombres con o sin ':' (Xbot usa "mixamorigHead", Michelle "mixamorig:Head").
+        modelo.updateMatrixWorld(true);
         cabezaH.getWorldPosition(vH); const yCabeza = vH.y;
         const yPies = Math.min(pieIH.getWorldPosition(vH).y, pieDH.getWorldPosition(vH).y);
         const alto = Math.max(0.001, yCabeza - yPies);
         const esc = 1.62 / alto;
-        // medir el centro con HUESOS en el espacio natural del modelo (escala 1)
+        // medir el centro con HUESOS, ya en la orientación final
         manoIH.getWorldPosition(vH); const xI = vH.x;
         manoDH.getWorldPosition(vH); const xD = vH.x;
         pieIH.getWorldPosition(vH); const yP = vH.y;
         pelvisH.getWorldPosition(vH); const zP = vH.z;
-        // centrar el MODELO dentro del wrapper (el wrapper escala todo uniformemente)
+        // centrar el MODELO dentro del wrapper (el wrapper escala todo uniformemente);
+        // esto es una traslación pura, no interfiere con la rotación ya fijada arriba
         modelo.position.set(-(xI + xD) / 2, -yP, -zP);
-        // CORRECCIÓN DE ORIENTACIÓN: el Xbot apunta +X, el juego apunta +Z
-        modelo.rotation.y = -Math.PI / 2;
         root.scale.setScalar(esc);
         root.updateMatrixWorld(true);
         const offset = new THREE.Vector3(0, 0, 0);
@@ -4757,6 +5081,45 @@ function cargarAngieGLB(){
             };
             if (Array.isArray(o.material)) o.material = o.material.map(convertir);
             else o.material = convertir(o.material);
+            // Angie debe tener piel BLANCA (estilo anime), no morena: recolorear
+            // los píxeles de piel de la textura difusa, preservando el sombreado
+            // y sin tocar el traje (amarillo/rojo/gris/negro del uniforme).
+            const matsA = Array.isArray(o.material) ? o.material : [o.material];
+            matsA.forEach(mat => {
+              if (!mat || !mat.map || mat.userData.pielBlanca) return;
+              mat.userData.pielBlanca = true;
+              const img = mat.map.image;
+              if (!img || !img.width || !img.height) return;
+              try {
+                const cv = document.createElement('canvas');
+                cv.width = img.width; cv.height = img.height;
+                const cx = cv.getContext('2d');
+                cx.drawImage(img, 0, 0);
+                const d = cx.getImageData(0, 0, cv.width, cv.height);
+                const px = d.data;
+                let n = 0;
+                for (let i = 0; i < px.length; i += 4){
+                  const r = px[i], g = px[i+1], b = px[i+2];
+                  // firma de piel morena: R>=G>B, sin llegar al amarillo del traje (g-b<=95)
+                  if (r >= g && g > b && r > 35 && (g - b) >= 6 && (g - b) <= 95 && (r - g) >= 6 && (r - g) <= 130){
+                    const l = (0.299*r + 0.587*g + 0.114*b) / 255;
+                    if (l < 0.12) continue; // no aclarar pelo o sombras muy oscuras
+                    const nl = 0.55 + Math.max(0, (l - 0.10)) / 0.40 * 0.40;
+                    const f = l > 0.001 ? nl / l : 1;
+                    px[i]   = Math.min(255, Math.round(r * f * 1.02));
+                    px[i+1] = Math.min(255, Math.round(g * f * 1.06));
+                    px[i+2] = Math.min(255, Math.round(b * f * 1.12));
+                    n++;
+                  }
+                }
+                if (n > 0){
+                  cx.putImageData(d, 0, 0);
+                  mat.map.image = cv;
+                  mat.map.needsUpdate = true;
+                  console.log('[Angie] piel blanqueada: ' + n + ' px (' + img.width + 'x' + img.height + ')');
+                }
+              } catch(e){ /* textura no decodificable como imagen */ }
+            });
           }
           // CRÍTICO: desactivar frustumCulling en SkinnedMesh para que Three.js
           // no los descarte (su bounding box no refleja la deformación del esqueleto)
@@ -4782,21 +5145,65 @@ function cargarAngieGLB(){
         for (const k in huesos){
           huesos[k].userData.qT = huesos[k].quaternion.clone();
         }
-        // calcular la escala efectiva del hueso de la cadera (el modelo puede tener
-        // un nodo padre con escala 0.01 de fábrica): unidades mundiales por unidad local
+        // ===== CORRECCIÓN POR HUESO PARA MODELOS CON CONVENCIÓN DE EJES DISTINTA =====
+        // Xbot tiene TODOS los huesos en rotación bind idéntica (la forma en T se
+        // consigue solo con offsets de posición): un brazo siempre apunta hacia su
+        // hijo en +/-X local y una pierna siempre en -Y local. copiarOrientacion
+        // asume esa convención al copiar la orientación MUNDIAL del controlador
+        // directamente. Modelos como Michelle traen rotaciones bind reales en
+        // brazos/piernas, así que su dirección real hacia el hijo no es siempre esa
+        // — sin corregirlo, las extremidades quedan invertidas (apuntando hacia
+        // arriba en vez de hacia abajo). Medimos la dirección real de cada hueso
+        // hacia su hijo y calculamos la rotación que hace falta para tratarlo como
+        // si usara la convención de Xbot (en Xbot esto da una corrección ~identidad).
+        function calcularQFix(hueso, dirRef){
+          if (!hueso) return null;
+          const hijo = hueso.children.find(c => c.isBone);
+          if (!hijo || hijo.position.lengthSq() < 1e-10) return null;
+          const dirReal = hijo.position.clone().normalize();
+          return new THREE.Quaternion().setFromUnitVectors(dirReal, dirRef.clone().normalize());
+        }
+        const EJE_X = new THREE.Vector3(1, 0, 0);
+        const EJE_NEG_X = new THREE.Vector3(-1, 0, 0);
+        const EJE_NEG_Y = new THREE.Vector3(0, -1, 0);
+        if (huesos.brazoI) huesos.brazoI.userData.qFix = calcularQFix(huesos.brazoI, EJE_X);
+        if (huesos.codoI) huesos.codoI.userData.qFix = calcularQFix(huesos.codoI, EJE_X);
+        if (huesos.brazoD) huesos.brazoD.userData.qFix = calcularQFix(huesos.brazoD, EJE_NEG_X);
+        if (huesos.codoD) huesos.codoD.userData.qFix = calcularQFix(huesos.codoD, EJE_NEG_X);
+        if (huesos.piernaI) huesos.piernaI.userData.qFix = calcularQFix(huesos.piernaI, EJE_NEG_Y);
+        if (huesos.rodillaI) huesos.rodillaI.userData.qFix = calcularQFix(huesos.rodillaI, EJE_NEG_Y);
+        if (huesos.piernaD) huesos.piernaD.userData.qFix = calcularQFix(huesos.piernaD, EJE_NEG_Y);
+        if (huesos.rodillaD) huesos.rodillaD.userData.qFix = calcularQFix(huesos.rodillaD, EJE_NEG_Y);
+        // Averiguar qué EJE LOCAL de la pelvis corresponde a "arriba" en el mundo.
+        // En Xbot el eje local Y de la pelvis ya apunta hacia arriba, pero en modelos
+        // como Michelle hay un nodo intermedio ("Character") rotado 90° de fábrica
+        // (conversión Z-up de Blender a Y-up), así que "arriba" del mundo corresponde
+        // a OTRO eje local de la pelvis. Si asumiéramos siempre Y, el rebote de altura
+        // empujaría al personaje hacia adelante/atrás en vez de hacia arriba, y la
+        // escala efectiva saldría casi cero (dividir por eso deforma el cuerpo entero).
+        const qPadrePelvis = new THREE.Quaternion();
+        huesos.pelvis.parent.getWorldQuaternion(qPadrePelvis);
+        const arribaLocal = new THREE.Vector3(0, 1, 0).applyQuaternion(qPadrePelvis.clone().invert()).normalize();
+        huesos.pelvis.userData.arribaLocal = arribaLocal;
+        // calcular la escala efectiva a lo largo de ese eje: unidades mundiales por unidad local
         const vA = new THREE.Vector3();
         const vB = new THREE.Vector3();
+        const basePelvisLocal = huesos.pelvis.position.clone();
         huesos.pelvis.getWorldPosition(vA);
-        huesos.pelvis.position.y += 1;
+        huesos.pelvis.position.addScaledVector(arribaLocal, 1);
         root.updateMatrixWorld(true);
         huesos.pelvis.getWorldPosition(vB);
-        huesos.pelvis.position.y -= 1;
+        huesos.pelvis.position.copy(basePelvisLocal);
         root.updateMatrixWorld(true);
-        const escEfectiva = Math.max(0.0001, vB.y - vA.y);
+        const escEfectiva = Math.max(0.0001, vB.clone().sub(vA).length());
         huesos.pelvis.userData.escEfectiva = escEfectiva;
         angieGLB.escEfectiva = escEfectiva;
-        // añadir busto y nalgas de Angie (color de la paleta) para mantener la sensualidad
+        // Busto/nalgas/pelo/ropa "de refuerzo" (esferas y cilindros) solo se generan
+        // para Xbot, el maniquí liso sin forma ni ropa propia. Michelle ya trae un
+        // cuerpo, ropa y pelo reales esculpidos y texturizados: agregar estas piezas
+        // encima solo se veía como bultos ("palos y bolas") sobre su malla real.
         const pal = PALETAS.angie;
+        if (!esMichelle){
         const esferasBusto = [];
         const esferasNalgas = [];
         const matBusto = new THREE.MeshToonMaterial({ color: pal.camisa });
@@ -4813,7 +5220,84 @@ function cargarAngieGLB(){
         }
         angieGLB.busto = esferasBusto;
         angieGLB.nalgas = esferasNalgas;
-        // ===== ROPA PROCEDURAL DE ANGIE =====
+        }
+
+        // ===== CARA ANIME (ojos grandes + rubor), solo para Xbot =====
+        // Michelle ya trae su propio rostro esculpido y texturizado: superponer
+        // esta carita encima se vería como una calcomanía flotando sobre su cara real.
+        if (!esMichelle){
+        // se posicionan siguiendo la cabeza cada frame (ver sincronizarAngieGLB)
+        const caraAncla = new THREE.Group();
+        root.add(caraAncla);
+        const ojoTex = crearTexturaOjosAnime();
+        const ojoMat = new THREE.MeshBasicMaterial({ map: ojoTex, transparent: true, side: THREE.DoubleSide, depthTest: true });
+        const ojoPanel = new THREE.Mesh(new THREE.PlaneGeometry(0.24, 0.12), ojoMat);
+        caraAncla.add(ojoPanel);
+        const matRubor = new THREE.MeshToonMaterial({ color: 0xff8888, transparent: true, opacity: 0.42 });
+        const ruborI = new THREE.Mesh(new THREE.SphereGeometry(0.03, 12, 10), matRubor);
+        ruborI.scale.set(1.6, 0.6, 0.4);
+        caraAncla.add(ruborI);
+        const ruborD = ruborI.clone();
+        caraAncla.add(ruborD);
+        // boquita: una línea suave y minimalista (estilo anime), independiente
+        // de la textura de ojos para no arriesgar el aspecto ya calibrado de éstos
+        const matBoca = new THREE.MeshToonMaterial({ color: 0xb5636f });
+        const boca = new THREE.Mesh(new THREE.BoxGeometry(0.042, 0.007, 0.006), matBoca);
+        caraAncla.add(boca);
+        angieGLB.cara = {
+          ancla: caraAncla, ojoPanel, ruborI, ruborD, boca,
+          blinkT: rand(2, 5), blinking: null,
+        };
+        }
+
+        // ===== PELO ANIME CON MECHONES FÍSICOS (solo Xbot; Michelle ya trae pelo real) =====
+        if (!esMichelle){
+        // se cuelgan de la cabeza y se balancean con el movimiento (correr/girar)
+        const colorPelo = new THREE.Color(pal.pelo);
+        const colorPeloBrillo = colorPelo.clone().offsetHSL(0, 0, 0.18);
+        const matPelo = new THREE.MeshToonMaterial({ color: colorPelo });
+        const matPeloBrillo = new THREE.MeshToonMaterial({ color: colorPeloBrillo });
+        const peloAncla = new THREE.Group();
+        root.add(peloAncla);
+        // melena base que cubre la nuca y cae por la espalda
+        const peloBase = new THREE.Mesh(new THREE.SphereGeometry(0.145, 18, 14, 0, Math.PI * 2, 0, Math.PI * 0.58), matPelo);
+        peloBase.position.set(0, 0.03, -0.01);
+        peloAncla.add(peloBase);
+        const peloEspalda = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.46, 12), matPelo);
+        peloEspalda.position.set(0, -0.2, -0.09);
+        peloEspalda.rotation.x = 0.22;
+        peloAncla.add(peloEspalda);
+        function crearMechonGLB(x, y, z, largo, grosor, segmentos){
+          const pivote = new THREE.Group();
+          pivote.position.set(x, y, z);
+          peloAncla.add(pivote);
+          const segs = segmentos || 3;
+          for (let i = 0; i < segs; i++){
+            const r = grosor * (1 - i * 0.2);
+            const mat = i % 2 === 0 ? matPelo : matPeloBrillo;
+            const seg = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 8), mat);
+            seg.scale.set(1, 1.7, 1);
+            seg.position.set(0, -largo * (i + 0.5) / segs, 0);
+            pivote.add(seg);
+          }
+          return pivote;
+        }
+        const mechonesGLB = [
+          crearMechonGLB(-0.12, 0.07, 0.03, 0.3, 0.048, 3),
+          crearMechonGLB(0.12, 0.07, 0.03, 0.3, 0.048, 3),
+          crearMechonGLB(-0.05, 0.05, -0.09, 0.42, 0.055, 3),
+          crearMechonGLB(0.05, 0.05, -0.09, 0.42, 0.055, 3),
+        ];
+        angieGLB.pelo = {
+          ancla: peloAncla,
+          mechones: mechonesGLB,
+          fisica: mechonesGLB.map(() => ({ x: 0, v: 0, k: 55, d: 6.5 })),
+          prevYaw: null,
+        };
+        }
+
+        // ===== ROPA PROCEDURAL DE ANGIE (solo Xbot; Michelle ya trae ropa real) =====
+        if (!esMichelle){
         const ropa = {};
         // Camiseta: cilindro alrededor del torso
         const matCamisa = new THREE.MeshToonMaterial({ color: pal.camisa, side: THREE.DoubleSide });
@@ -4823,12 +5307,28 @@ function cargarAngieGLB(){
         const matFalda = new THREE.MeshToonMaterial({ color: pal.pantalon, side: THREE.DoubleSide });
         ropa.falda = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.28, 0.35, 16), matFalda);
         root.add(ropa.falda);
+        // Tiras del borde de la falda: cuelgan y se balancean para dar sensación
+        // de tela en movimiento (vuelan al correr, se mecen en reposo)
+        ropa.faldaTiras = [];
+        ropa.faldaFisica = [];
+        const nTiras = 10;
+        for (let i = 0; i < nTiras; i++){
+          const ang = (i / nTiras) * Math.PI * 2;
+          const tira = new THREE.Mesh(new THREE.BoxGeometry(0.085, 0.16, 0.02), matFalda);
+          const radioTira = 0.27;
+          tira.position.set(Math.sin(ang) * radioTira, -0.18, Math.cos(ang) * radioTira);
+          tira.rotation.y = ang;
+          ropa.falda.add(tira);
+          ropa.faldaTiras.push(tira);
+          ropa.faldaFisica.push({ x: 0, v: 0, k: 70, d: 7, ang: ang });
+        }
         // Zapatillas: dos cajitas
         const matZap = new THREE.MeshToonMaterial({ color: 0xffffff });
         ropa.zapI = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 0.14), matZap);
         ropa.zapD = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 0.14), matZap);
         root.add(ropa.zapI); root.add(ropa.zapD);
         angieGLB.ropa = ropa;
+        }
         // el GLB vive como hermano del jugador en la escena y sigue su posición cada frame
         angieGLB.offset = offset;
         if (jugador && jugador.parent){
@@ -4841,20 +5341,77 @@ function cargarAngieGLB(){
         }
         // ocultar el modelo procedural (solo el arma y la física siguen visibles)
         if (jugador) jugador.visible = false;
-        console.log('Angie GLB cargado OK: ' + fuentes[intento] + ' (' + alto.toFixed(2) + 'u -> ' + esc.toFixed(2) + ')');
+        console.log('%c[Angie] GLB cargado OK: ' + nombreFuente + ' (' + alto.toFixed(2) + 'u -> ' + esc.toFixed(2) + ')', 'color:#4caf50;font-weight:bold;');
+    }catch(err){
+      throw err;
+    }
+  }
+  function probar(){
+    if (intento >= fuentes.length){
+      // se agotaron los .glb: si estamos en file:// o falló la descarga, usamos
+      // la copia embebida en base64 (que sí carga sin servidor)
+      probarBase64();
+      return;
+    }
+    const fuente = fuentes[intento];
+    const esMichelle = /michelle/i.test(fuente);
+    loader.load(fuente, gltf => {
+      try{
+        procesarAngieGLB(gltf, esMichelle, fuente);
       }catch(err){
-        console.error('Error preparando GLB:', err);
+        // si algo falla procesando este modelo, no nos quedamos con el cuerpo
+        // 100% procedural en silencio: probamos el siguiente de la lista (Xbot)
+        console.error('[Angie] Error preparando ' + fuente + ', se prueba el siguiente modelo:', err);
+        intento++;
+        probar();
       }
-    }, undefined, () => {
+    }, undefined, (err) => {
+      console.warn('[Angie] No se pudo descargar ' + fuente + ', se prueba el siguiente modelo:', err);
       intento++;
       probar();
     });
   }
+  function probarBase64(){
+    if (typeof window.__MICHELLE_GLB_B64__ !== 'string' || !window.__MICHELLE_GLB_B64__){
+      console.error('[Angie] No hay copia embebida (michelle_b64.js). Se muestra el cuerpo procedural de respaldo.');
+      return;
+    }
+    try{
+      const bin = atob(window.__MICHELLE_GLB_B64__);
+      const buf = new ArrayBuffer(bin.length);
+      const view = new Uint8Array(buf);
+      for (let i = 0; i < bin.length; i++) view[i] = bin.charCodeAt(i);
+      loader.parse(buf, '', gltf => {
+        try{
+          procesarAngieGLB(gltf, true, 'michelle.glb (embebido)');
+        }catch(err){
+          console.error('[Angie] Error preparando la copia embebida de Michelle:', err);
+        }
+      }, err => {
+        console.error('[Angie] No se pudo parsear la copia embebida de Michelle:', err);
+      });
+    }catch(err){
+      console.error('[Angie] No se pudo decodificar la copia embebida:', err);
+    }
+  }
+  // Si abrimos index.html con doble clic (protocolo file:), Chrome/Edge bloquean
+  // la descarga de los .glb por CORS y quedaría el muñeco procedural. Para esos
+  // casos usamos directamente la copia embebida en base64.
+  const enFile = typeof location !== 'undefined' && location.protocol === 'file:';
+  if (enFile && typeof window.__MICHELLE_GLB_B64__ === 'string' && window.__MICHELLE_GLB_B64__){
+    probarBase64();
+    return;
+  }
   probar();
+  // aviso si, tras agotar todas las fuentes, ninguna cargó (queda el cuerpo procedural)
+  setTimeout(() => {
+    if (!angieGLB) console.error('[Angie] Ningún modelo GLB (michelle.glb / xbot.glb) llegó a cargar. Se muestra el cuerpo procedural de respaldo. Revisa esta consola para ver el motivo exacto arriba.');
+  }, 4000);
 }
 
-function sincronizarAngieGLB(){
+function sincronizarAngieGLB(dt){
   if (!angieGLB || !jugador) return;
+  dt = Math.min(dt || 0.016, 0.05);
   const root = angieGLB.root;
   const H = angieGLB.huesos;
   const Q = angieGLB.qColgado;
@@ -4873,8 +5430,8 @@ function sincronizarAngieGLB(){
       root.rotation.copy(jugador.rotation);
       root.updateMatrixWorld(true);
       const vP = new THREE.Vector3();
-      const pI = angieGLB.root.getObjectByName('mixamorigLeftFoot');
-      const pD = angieGLB.root.getObjectByName('mixamorigRightFoot');
+      const pI = buscarPorNombre(angieGLB.root, 'mixamorigLeftFoot');
+      const pD = buscarPorNombre(angieGLB.root, 'mixamorigRightFoot');
       const yI = pI ? pI.getWorldPosition(vP).y : 0;
       const yD = pD ? pD.getWorldPosition(vP).y : 0;
       const yMin = Math.min(yI, yD);
@@ -4897,17 +5454,25 @@ function sincronizarAngieGLB(){
     // orientación mundial objetivo = orientación del controlador (o con offset extra)
     const qObj = new THREE.Quaternion();
     ctrlPart.getWorldQuaternion(qObj);
-    if (extraQ) qObj.premultiply(extraQ);
+    // extraQ (qFix) se aplica DESPUÉS, en el espacio local de referencia de Xbot,
+    // para compensar huesos cuya dirección real hacia su hijo no es la esperada
+    if (extraQ) qObj.multiply(extraQ);
     // convertir al espacio local del hueso usando la orientación mundial de su padre
     hueso.parent.getWorldQuaternion(qPadre);
     hueso.quaternion.copy(qPadre.clone().invert().multiply(qObj));
   }
-  // pelvis: copiar posición y rotación (y + rebote), compensando la escala efectiva
-  if (H.pelvis.userData.pelvisBaseY === undefined){
-    H.pelvis.userData.pelvisBaseY = H.pelvis.position.y;
+  // pelvis: copiar posición y rotación (y + rebote), compensando la escala efectiva.
+  // El desplazamiento de altura se aplica a lo largo del eje LOCAL que de verdad
+  // corresponde a "arriba" en el mundo (ver arribaLocal en cargarAngieGLB), no
+  // siempre el eje Y local, porque algunos modelos (Michelle) tienen un nodo
+  // intermedio rotado que hace que su Y local apunte hacia otro lado.
+  if (H.pelvis.userData.pelvisBase === undefined){
+    H.pelvis.userData.pelvisBase = H.pelvis.position.clone();
   }
   const escEff = H.pelvis.userData.escEfectiva || (root.scale.x || 1);
-  H.pelvis.position.y = H.pelvis.userData.pelvisBaseY + (P.pelvis.position.y - 0.92) / escEff;
+  const arribaLocal = H.pelvis.userData.arribaLocal || V3(0, 1, 0);
+  const deltaAltura = (P.pelvis.position.y - 0.92) / escEff;
+  H.pelvis.position.copy(H.pelvis.userData.pelvisBase).addScaledVector(arribaLocal, deltaAltura);
   copiarOrientacion(H.pelvis, P.pelvis);
   root.updateMatrixWorld(true);
   // torso
@@ -4916,28 +5481,39 @@ function sincronizarAngieGLB(){
   // cabeza
   copiarOrientacion(H.cabeza, P.cabeza);
   root.updateMatrixWorld(true);
-  // brazos: copiar orientación mundial directa (sin qColgado offset);
-  // el modelo está rotado -90° para alinear su forward con +Z,
-  // y la conversión parent->local maneja la jerarquía Mixamo correctamente
-  copiarOrientacion(H.brazoI, P.brazoI);
+  // brazos: copiar orientación mundial del controlador + la rotación de BAJADA
+  // (qColgado.brazoI/D). El controlador procedural cuelga los brazos por geometría
+  // (las cajas cuelgan en -Y local del hombro) y su orientación mundial es la de la
+  // pelvis, pero el GLB de Mixamo trae los brazos en T-pose (horizontal): sin bajar
+  // el hueso, el brazo queda en cruz ("crucificada"). qColgado.brazoI = rotZ(-90°)
+  // y qColgado.brazoD = rotZ(+90°) es exactamente la rotación que baja cada brazo.
+  // Se compone con el qFix de ejes existente para que funcione en ambos modelos.
+  function qBrazo(hueso, bajada){
+    const qFix = hueso.userData.qFix;
+    if (!qFix) return bajada;
+    return qFix.clone().multiply(bajada);
+  }
+  copiarOrientacion(H.brazoI, P.brazoI, qBrazo(H.brazoI, Q.brazoI));
   root.updateMatrixWorld(true);
-  copiarOrientacion(H.brazoD, P.brazoD);
+  copiarOrientacion(H.brazoD, P.brazoD, qBrazo(H.brazoD, Q.brazoD));
   root.updateMatrixWorld(true);
-  if (P.brazoI.userData.codo) copiarOrientacion(H.codoI, P.brazoI.userData.codo);
+  if (P.brazoI.userData.codo) copiarOrientacion(H.codoI, P.brazoI.userData.codo, qBrazo(H.codoI, Q.brazoI));
   root.updateMatrixWorld(true);
-  if (P.brazoD.userData.codo) copiarOrientacion(H.codoD, P.brazoD.userData.codo);
+  if (P.brazoD.userData.codo) copiarOrientacion(H.codoD, P.brazoD.userData.codo, qBrazo(H.codoD, Q.brazoD));
   root.updateMatrixWorld(true);
   // piernas y rodillas
-  copiarOrientacion(H.piernaI, P.piernaI);
+  copiarOrientacion(H.piernaI, P.piernaI, H.piernaI.userData.qFix);
   root.updateMatrixWorld(true);
-  copiarOrientacion(H.piernaD, P.piernaD);
+  copiarOrientacion(H.piernaD, P.piernaD, H.piernaD.userData.qFix);
   root.updateMatrixWorld(true);
-  if (P.piernaI.userData.rodilla) copiarOrientacion(H.rodillaI, P.piernaI.userData.rodilla);
+  if (P.piernaI.userData.rodilla) copiarOrientacion(H.rodillaI, P.piernaI.userData.rodilla, H.rodillaI.userData.qFix);
   root.updateMatrixWorld(true);
-  if (P.piernaD.userData.rodilla) copiarOrientacion(H.rodillaD, P.piernaD.userData.rodilla);
+  if (P.piernaD.userData.rodilla) copiarOrientacion(H.rodillaD, P.piernaD.userData.rodilla, H.rodillaD.userData.qFix);
   root.updateMatrixWorld(true);
-  // sincronizar el arma: el grupo del arma vive en el brazoD del controlador;
-  // copiamos su matriz mundial (escala compensada) a la mano derecha del GLB
+  // sincronizar el arma: anclarla a la MANO del modelo, no al punto de colgado del
+  // controlador (que en Michelle cae a la altura del codo). Calculamos la relación
+  // del arma con la mano del controlador (la esfera al final de su antebrazo) y la
+  // aplicamos a la mano real del GLB, así el arma se sostiene con el puño.
   if (jugador.userData.armaGrupo && H.manoD){
     const ag = jugador.userData.armaGrupo;
     jugador.updateMatrixWorld(true);
@@ -4947,10 +5523,20 @@ function sincronizarAngieGLB(){
       H.manoD.add(vis);
       H.manoD.userData.armaVis = vis;
     }
-    // convertir la matriz mundial del arma (controlador) al espacio local de la mano del GLB
-    const obj = ag.matrixWorld.clone();
-    obj.premultiply(new THREE.Matrix4().copy(H.manoD.matrixWorld).invert());
-    obj.decompose(vis.position, vis.quaternion, vis.scale);
+    const codoC = P.brazoD.userData.codo;
+    if (codoC){
+      codoC.updateMatrixWorld(true);
+      // mano del controlador: esfera al final del antebrazo, en (0,-0.1,0.003) del codo
+      const mManoC = new THREE.Matrix4().copy(codoC.matrixWorld)
+        .multiply(new THREE.Matrix4().makeTranslation(0, -0.1, 0.003));
+      const rel = ag.matrixWorld.clone().premultiply(new THREE.Matrix4().copy(mManoC).invert());
+      rel.decompose(vis.position, vis.quaternion, vis.scale);
+    } else {
+      // respaldo sin codo: copiar la matriz mundial del arma al espacio local de la mano
+      const obj = ag.matrixWorld.clone();
+      obj.premultiply(new THREE.Matrix4().copy(H.manoD.matrixWorld).invert());
+      obj.decompose(vis.position, vis.quaternion, vis.scale);
+    }
   }
   // busto y nalgas con física: copiamos su posición mundial al GLB (escala compensada)
   if (angieGLB.busto && P.pelvis.userData.busto){
@@ -4986,10 +5572,77 @@ function sincronizarAngieGLB(){
     ropa.falda.position.copy(v);
     ropa.falda.position.y += 0.02;
     // Zapatillas: siguen los pies
-    const pieI = angieGLB.root.getObjectByName('mixamorigLeftFoot');
-    const pieD = angieGLB.root.getObjectByName('mixamorigRightFoot');
+    const pieI = buscarPorNombre(angieGLB.root, 'mixamorigLeftFoot');
+    const pieD = buscarPorNombre(angieGLB.root, 'mixamorigRightFoot');
     if (pieI) { pieI.getWorldPosition(v); root.worldToLocal(v); ropa.zapI.position.copy(v); }
     if (pieD) { pieD.getWorldPosition(v); root.worldToLocal(v); ropa.zapD.position.copy(v); }
+    // Tiras de la falda: vuelan/se mecen según la velocidad y el ritmo del paso
+    if (ropa.faldaTiras){
+      const velRopa = S.vel || 0;
+      for (let i = 0; i < ropa.faldaTiras.length; i++){
+        const f = ropa.faldaFisica[i];
+        const empuje = Math.cos(f.ang) * velRopa * 0.05 + Math.sin(tGlobal * 3 + i * 1.1) * 0.05;
+        const fuerza = -f.k * f.x - f.d * f.v + empuje * 22;
+        f.v += fuerza * dt;
+        f.x += f.v * dt;
+        f.x = Math.max(-0.6, Math.min(0.6, f.x));
+        ropa.faldaTiras[i].rotation.x = 0.15 + f.x;
+      }
+    }
+  }
+  // ===== CARA Y PELO ANIME: siguen la posición de la cabeza cada frame =====
+  if (H.cabeza && (angieGLB.cara || angieGLB.pelo)){
+    H.cabeza.getWorldPosition(v);
+    root.worldToLocal(v);
+    if (angieGLB.cara){
+      const cara = angieGLB.cara;
+      cara.ancla.position.copy(v);
+      // desplazamiento local aproximado hacia el frente/arriba de la cara
+      cara.ojoPanel.position.set(0, 0.11, 0.1);
+      cara.ruborI.position.set(-0.08, 0.05, 0.09);
+      cara.ruborD.position.set(0.08, 0.05, 0.09);
+      cara.boca.position.set(0, 0.045, 0.115);
+      // parpadeo periódico: aplasta el panel de ojos verticalmente y lo restaura
+      // (funciona igual sin importar la orientación de la textura)
+      if (cara.blinking === null){
+        cara.blinkT -= dt;
+        if (cara.blinkT <= 0) cara.blinking = 0;
+      } else {
+        cara.blinking += dt;
+        const durBlink = 0.16;
+        const pb = cara.blinking / durBlink;
+        if (pb >= 1){
+          cara.blinking = null;
+          cara.blinkT = rand(2.5, 5.5);
+          cara.ojoPanel.scale.y = 1;
+        } else {
+          cara.ojoPanel.scale.y = Math.max(0.05, pb < 0.5 ? 1 - pb * 2 : (pb - 0.5) * 2);
+        }
+      }
+    }
+    if (angieGLB.pelo){
+      angieGLB.pelo.ancla.position.copy(v);
+      // física de balanceo: reacciona al giro del personaje y a la carrera
+      const yaw = jugador.rotation.y;
+      if (angieGLB.pelo.prevYaw === null) angieGLB.pelo.prevYaw = yaw;
+      let dYaw = yaw - angieGLB.pelo.prevYaw;
+      if (dYaw > Math.PI) dYaw -= Math.PI * 2;
+      if (dYaw < -Math.PI) dYaw += Math.PI * 2;
+      const yawVel = dt > 0 ? dYaw / dt : 0;
+      angieGLB.pelo.prevYaw = yaw;
+      const velLat = clamp(-yawVel * 0.5, -3, 3);
+      const velCarrera = clamp((S.vel || 0) * 0.1, 0, 2.2);
+      for (let i = 0; i < angieGLB.pelo.mechones.length; i++){
+        const m = angieGLB.pelo.mechones[i];
+        const f = angieGLB.pelo.fisica[i];
+        const fuerza = -f.k * f.x - f.d * f.v + velLat * 30 + Math.sin(tGlobal * 2.2 + i * 1.4) * 3.2;
+        f.v += fuerza * dt;
+        f.x += f.v * dt;
+        f.x = Math.max(-0.9, Math.min(0.9, f.x));
+        m.rotation.z = f.x * 0.55;
+        m.rotation.x = -velCarrera * 0.32 + Math.sin(tGlobal * 1.7 + i * 1.1) * 0.06;
+      }
+    }
   }
 }
 
@@ -5025,8 +5678,19 @@ window.addEventListener('keydown', e => {
   if (e.code === 'Digit3') equiparArma('pala');
   if (e.code === 'Digit4') equiparArma('pistola');
   if (e.code === 'KeyE' && S.estado === 'jugando' && S.armaActual === 'pistola') iniciarRecarga();
+  // Enter: atacar / disparar (alternativa al click del ratón para jugar 100% con teclado)
+  if (e.code === 'Enter' && S.estado === 'jugando' && !Foto.activo){
+    if (S.armaActual === 'pistola') disparar();
+    else if (!S.swing) iniciarGolpe();
+  }
 });
-window.addEventListener('keyup', e => { teclas[e.code] = false; });
+window.addEventListener('keyup', e => {
+  teclas[e.code] = false;
+  // salto variable: soltar Espacio en pleno ascenso corta el impulso → salto corto
+  if (e.code === 'Space' && enAire && velY > 2 && S.estado === 'jugando' && !Foto.activo){
+    velY *= 0.5;
+  }
+});
 window.addEventListener('mousedown', e => {
   if (Foto.activo){
     Foto.arrastrando = true;
@@ -5082,9 +5746,32 @@ function actualizarJugador(dt){
       jugador.position.z += fwd.z * mz * vel * dt;
     }
     S.vel = Math.abs(mz) * vel;
+    // velocidad suavizada para la animación: la transición caminar⇄correr se
+    // mezcla de forma progresiva (frecuencia, rebote y brazos) en lugar de saltar
+    jugador.userData.velSmooth = lerp(jugador.userData.velSmooth || 0, S.vel, Math.min(1, dt * 5));
     jugador.rotation.y = angLerp(jugador.rotation.y, camYaw, Math.min(1, dt * 12));
 
-    if (teclas['Space'] && !enAire && !S.agachado){
+    // fase de marcha por DISTANCIA recorrida (~1.05 rad por unidad ≈ frecuencia 7
+    // rad/s a velocidad de paso): animarHumano la usa para plantar los pies en el
+    // suelo al acelerar/frenar (nada de foot-skating)
+    jugador.userData.gaitFase = (jugador.userData.gaitFase || 0) + S.vel * dt * 1.05;
+    // velocidad de giro suavizada: animarHumano la usa para que torso y cabeza
+    // lideren las curvas y la pelvis se incline (banking)
+    const yawAnt = jugador.userData.yawAnt !== undefined ? jugador.userData.yawAnt : jugador.rotation.y;
+    let dYaw = jugador.rotation.y - yawAnt;
+    if (dYaw > Math.PI) dYaw -= Math.PI * 2;
+    if (dYaw < -Math.PI) dYaw += Math.PI * 2;
+    jugador.userData.velYaw = lerp(jugador.userData.velYaw || 0, dYaw / Math.max(dt, 0.001), Math.min(1, dt * 8));
+    jugador.userData.yawAnt = jugador.rotation.y;
+
+    // salto con buffer + coyote time: pulsar Espacio justo antes de aterrizar (o
+    // un instante tras salir del suelo) sigue saltando; la altura variable se
+    // corta al SOLTAR Espacio (ver keyup)
+    if (teclas['Space'] && !S.agachado) jumpBuffer = 0.14;
+    jumpBuffer = Math.max(0, jumpBuffer - dt);
+    coyoteT = enAire ? Math.max(0, coyoteT - dt) : 0.1;
+    if (jumpBuffer > 0 && coyoteT > 0 && !S.agachado){
+      jumpBuffer = 0; coyoteT = 0;
       enAire = true; velY = 7.6; AudioSys.salto();
       if (S.tut) S.tut.saltoHecho = true;
     }
@@ -5096,19 +5783,23 @@ function actualizarJugador(dt){
       lanzarOvillo();
     }
 
-    // pasos y polvo
-    if (S.vel > 0.6 && !enAire){
-      pasoTimer -= dt;
-      if (pasoTimer <= 0){
-        if (S.vel > 1) AudioSys.paso();
-        pasoTimer = usandoCorrer ? 0.3 : (S.agachado ? 0.75 : 0.48);
-      }
+    // pasos y polvo SINCRONIZADOS con la zancada: suenan en el apoyo real del pie
+    // (cada π radianes de fase de marcha = un paso, igual que el ciclo de piernas)
+    const faseN = Math.floor((jugador.userData.gaitFase || 0) / Math.PI);
+    if (jugador.userData.ultFasePaso === undefined) jugador.userData.ultFasePaso = faseN;
+    if (S.vel > 0.6 && !enAire && faseN !== jugador.userData.ultFasePaso){
+      jugador.userData.ultFasePaso = faseN;
+      if (S.vel > 1) AudioSys.paso();
       if ((usandoCorrer || S.vel > 1) && Math.random() < 0.3) polvo(jugador.position, 1.2);
     }
   }
-  // postura agachada
-  const objetivoY = S.agachado ? 0.78 : 1;
-  if (Math.abs(jugador.scale.y - objetivoY) > 0.001) jugador.scale.y = lerp(jugador.scale.y, objetivoY, dt * 12);
+  // agachado real: factor suavizado que animarHumano aplica a rodillas, muslos y
+  // torso (antes se aplastaba el modelo con scale.y; ahora se flexiona de verdad)
+  agachadoK = lerp(agachadoK, S.agachado ? 1 : 0, Math.min(1, dt * 10));
+  // fuera del juego (menú, pausa, foto) el giro se relaja para no quedar congelado
+  if (!jugando && jugador.userData.velYaw){
+    jugador.userData.velYaw = lerp(jugador.userData.velYaw, 0, Math.min(1, dt * 8));
+  }
   // gravedad
   if (enAire){
     velY -= 20 * dt;
@@ -5116,9 +5807,12 @@ function actualizarJugador(dt){
     if (jugador.position.y <= 0){
       jugador.position.y = 0; enAire = false;
       AudioSys.aterrizaje();
+      aterrizajeT = 0.28; // flexión de impacto: las rodillas ceden con la caída
       for (let i = 0; i < 5; i++) polvo(jugador.position, 0.6);
     }
   }
+  aterrizajeT = Math.max(0, aterrizajeT - dt);
+  if (jugador.userData.flinch > 0) jugador.userData.flinch = Math.max(0, jugador.userData.flinch - dt);
   // colisiones y límites
   if (S.estado === 'jugando' || S.estado === 'cutscene'){
     resolverColision(jugador.position, 0.5);
@@ -5130,25 +5824,38 @@ function actualizarJugador(dt){
   S.armaCd = Math.max(0, S.armaCd - dt);
   S.ovilloCd = Math.max(0, S.ovilloCd - dt);
   S.alertCd = Math.max(0, S.alertCd - dt);
-  animarHumano(jugador, tGlobal, S.vel > 0.5 && jugando, enAire, S.vel > 8, false);
-  // animación del golpe con el arma
+  animarHumano(jugador, tGlobal, S.vel > 0.5 && jugando, enAire, S.vel > 8, false, dt);
+  // animación del golpe con el arma: curva de aceleración (no lineal) para que
+  // el golpe se sienta con impulso real en vez de un giro a velocidad constante
   if (S.swing){
     S.swing.t += dt;
-    const prog = S.swing.t / S.swing.dur;
-    jugador.userData.parts.brazoD.rotation.x = -1.25 + prog * 3.1;
-    // el cuerpo acompaña el golpe con un rebote y balanceo
+    const prog = Math.min(1, S.swing.t / S.swing.dur);
+    const ease = prog < 0.5 ? 2 * prog * prog : 1 - Math.pow(-2 * prog + 2, 2) / 2;
     const Pj = jugador.userData.parts;
+    Pj.brazoD.rotation.x = -1.25 + ease * 3.1;
+    Pj.brazoD.rotation.z = Math.sin(prog * Math.PI) * 0.35; // giro diagonal del golpe
+    // el cuerpo acompaña el golpe con un rebote y balanceo
     Pj.pelvis.position.y = 0.92 + Math.abs(Math.sin(prog * Math.PI * 2)) * 0.06;
     Pj.pelvis.rotation.z = -Math.sin(prog * Math.PI) * 0.2;
     Pj.pelvis.rotation.x = -Math.sin(prog * Math.PI) * 0.1;
     Pj.torso.rotation.z = -Math.sin(prog * Math.PI) * 0.14;
+    Pj.torso.rotation.y = -Math.sin(prog * Math.PI) * 0.2;
+    // estela de movimiento del arma (swoosh) mientras dura el tramo activo del golpe
+    if (jugador.userData.armaGrupo && prog > 0.1 && prog < 0.9 && Math.random() < 0.6){
+      jugador.updateMatrixWorld(true);
+      const trailV = new THREE.Vector3();
+      jugador.userData.armaGrupo.getWorldPosition(trailV);
+      emitirP(trailV.x, trailV.y, trailV.z, rand(-0.3, 0.3), rand(-0.2, 0.2), rand(-0.3, 0.3), 0.16, 0.085, 0xffffff, 0.45);
+    }
     if (!S.swing.danoHecho && prog > 0.42){
       S.swing.danoHecho = true;
       aplicarGolpe();
     }
     if (prog >= 1){
-      jugador.userData.parts.brazoD.rotation.x = 0;
-      jugador.userData.parts.torso.rotation.z = 0;
+      Pj.brazoD.rotation.x = 0;
+      Pj.brazoD.rotation.z = 0;
+      Pj.torso.rotation.z = 0;
+      Pj.torso.rotation.y = 0;
       S.swing = null;
     }
   } else if (S.armaActual === 'pistola'){
@@ -5160,21 +5867,25 @@ function actualizarJugador(dt){
       if (g) g.position.z = 0.14 - S.recoil * 1.6;
     }
   }
-  // animación de la patada: la pierna se eleva y el cuerpo rebota
+  // animación de la patada: patada de EMPUJE tipo front-kick. La pose de cada
+  // frame la calcula aplicarPosePatada (compartida con el modo foto, para que la
+  // pose fotografiada muestre exactamente la misma animación): carga de la rodilla
+  // al pecho → extensión empujando de frente → retracción.
   if (S.patadaAnim){
     S.patadaAnim.t += dt;
-    const pr = S.patadaAnim.t / S.patadaAnim.dur;
+    const pr = Math.min(1, S.patadaAnim.t / S.patadaAnim.dur);
     const Pk = jugador.userData.parts;
-    Pk.piernaD.rotation.x = -0.95 * Math.sin(pr * Math.PI);
-    Pk.piernaD.userData.rodilla.rotation.x = 0.55 * Math.sin(pr * Math.PI);
-    Pk.brazoI.rotation.x = -1.6;
-    Pk.brazoD.rotation.x = -0.45;
-    Pk.pelvis.position.y = 0.92 + Math.abs(Math.sin(pr * Math.PI * 2)) * 0.07;
-    Pk.pelvis.rotation.z = -Math.sin(pr * Math.PI) * 0.24;
-    Pk.pelvis.rotation.x = -Math.sin(pr * Math.PI) * 0.13;
-    Pk.torso.rotation.z = -Math.sin(pr * Math.PI) * 0.12;
+    aplicarPosePatada(Pk, pr);
+    // el impacto (empujar al zombi) ocurre cuando la pierna se extiende, igual
+    // que el golpe con el arma se conecta en el tramo activo del swing
+    if (!S.patadaAnim.danoHecho && pr >= PR_PATADA_GOLPE){
+      S.patadaAnim.danoHecho = true;
+      aplicarPatada();
+    }
     if (pr >= 1){
       Pk.piernaD.rotation.x = 0; Pk.piernaD.userData.rodilla.rotation.x = 0;
+      Pk.piernaI.rotation.x = 0; Pk.piernaI.userData.rodilla.rotation.x = 0;
+      Pk.pelvis.rotation.x = 0; Pk.pelvis.rotation.z = 0; Pk.pelvis.rotation.y = 0;
       Pk.torso.rotation.z = 0;
       S.patadaAnim = null;
     }
@@ -5191,24 +5902,51 @@ function actualizarJugador(dt){
       actualizarIndicadorArma();
     }
   }
+  // sway del arma: micro-baile con el paso y la respiración (solo cuando no está
+  // en medio de un golpe; la pistola mantiene su postura de apuntar, solo respira)
+  const agSway = jugador.userData.armaGrupo;
+  if (agSway && agSway.userData.base && !S.swing && !S.patadaAnim){
+    const b = agSway.userData.base;
+    const gf = jugador.userData.gaitFase || tGlobal;
+    const sway = Math.sin(gf * 2) * 0.02 + Math.sin(tGlobal * 1.7) * 0.008;
+    if (S.armaActual === 'pistola'){
+      agSway.position.x = b.x + Math.sin(tGlobal * 2.6) * 0.012;
+      agSway.rotation.y = b.ry + Math.sin(tGlobal * 2.1) * 0.02;
+    } else {
+      agSway.position.x = b.x + sway * 0.6;
+      agSway.position.z = b.z + Math.abs(Math.sin(gf)) * 0.02;
+      agSway.rotation.z = b.rz + sway;
+      agSway.rotation.x = b.rx + Math.sin(tGlobal * 1.3) * 0.02;
+    }
+  }
   // copiar el estado final del controlador (incluidos golpe, patada y pistola) al GLB
-  sincronizarAngieGLB();
+  sincronizarAngieGLB(dt);
 }
 
 function ejecutarPatada(){
   AudioSys.patada();
   S.patadasTotales++;
-  S.patadaAnim = { t: 0, dur: 0.55 };
+  // la animación dura 0.6 s y el empuje a los zombis se aplica en el tramo
+  // activo (cuando la pierna se extiende), igual que el golpe con el arma
+  S.patadaAnim = { t: 0, dur: 0.6, danoHecho: false };
   S.resistencia = Math.max(0, S.resistencia - 15);
   sacudida = 0.3;
+}
+
+function aplicarPatada(){
+  // el empuje de la patada: aturde y empuja a los zombis que están delante.
+  // El alcance es generoso (4.2 u, más que el golpe cuerpo a cuerpo) y la fuerza
+  // del empuje depende del tamaño: la abominación apenas se mueve, los zombis
+  // normales salen disparados (3 u) y los corredores, al ser más ligeros, vuelan
   const f = { x: Math.sin(jugador.rotation.y), z: Math.cos(jugador.rotation.y) };
   let golpeados = 0;
   for (const z of zombis){
     const dx = z.m.position.x - jugador.position.x, dz = z.m.position.z - jugador.position.z;
     const d = Math.sqrt(dx * dx + dz * dz);
     const dot = d > 0.01 ? (dx * f.x + dz * f.z) / d : 0;
-    if (d < 3.4 && dot > 0.35){
-      aturdirZombi(z, 1.8);
+    if (d < 4.2 && dot > 0.35){
+      const empuje = z.tipo === 'abominacion' ? 1.2 : (z.tipo === 'corredor' ? 3.6 : 3.0);
+      aturdirZombi(z, empuje);
       golpeados++;
       emitirP(z.m.position.x, 1.2, z.m.position.z, f.x * rand(1, 2), rand(0.5, 1.5), f.z * rand(1, 2), 0.4, 0.3, 0x9a8f7d, 0.7);
     }
@@ -5220,6 +5958,8 @@ function ejecutarPatada(){
 function dañarJugador(cant, origen){
   if (invuln > 0 || S.estado !== 'jugando') return;
   invuln = 1.1;
+  // flinch: Angie reacciona al golpe (torso atrás, brazos al pecho) durante ~0.45 s
+  if (jugador) jugador.userData.flinch = 0.45;
   S.vida -= cant;
   S.danoRecibido += cant;
   S.danoNivel += cant;
@@ -5277,6 +6017,60 @@ function actualizarCamara(dt){
 }
 
 /* ===================== MODO FOTO ===================== */
+/* ===== POSE DE LA PATADA (compartida: combate y modo foto) =====
+   La patada de empuje usa estos keyframes tanto en el juego (F) como en la
+   pose del modo foto, así la pose fotografiada muestra exactamente la misma
+   animación. Son rotaciones locales del esqueleto del controlador (las mismas
+   que sincronizarAngieGLB copia al GLB). */
+const PR_PATADA_GOLPE = 0.52; // momento del impacto (pierna extendida)
+const KF_PATADA = {
+  piernaD: [[0, 0.06], [0.22, -0.46], [0.52, -1.02], [0.82, -0.3], [1, 0.04]],
+  rodD:    [[0, 0.06], [0.22, 1.18], [0.52, 0.1], [0.82, 0.35], [1, 0.05]],
+  piernaI: [[0, 0.05], [0.22, 0.16], [0.52, 0.06], [1, 0.04]],
+  brazoI:  [[0, -0.3], [0.22, -0.95], [0.52, -1.55], [1, -0.35]],
+  brazoD:  [[0, 0.1], [0.22, 0.42], [0.52, 0.55], [1, 0.12]],
+  codoI:   [[0, -0.5], [0.22, -0.85], [0.52, -0.9], [1, -0.4]],
+  codoD:   [[0, -0.3], [0.22, -0.5], [0.52, -0.55], [1, -0.3]],
+  torsoX:  [[0, 0.04], [0.22, 0.17], [0.52, -0.2], [1, 0.02]],
+  torsoZ:  [[0, 0], [0.22, 0.1], [0.52, -0.12], [1, 0]],
+  pelY:    [[0, 0], [0.22, -0.055], [0.52, 0.045], [1, 0]],
+  pelX:    [[0, 0], [0.22, 0.12], [0.52, -0.14], [1, 0]],
+  pelZ:    [[0, 0], [0.22, 0.05], [0.52, -0.06], [1, 0]],
+  pelYaw:  [[0, 0], [0.22, -0.05], [0.52, -0.16], [1, 0]],
+};
+function kfPatada(pts, x){
+  if (x <= pts[0][0]) return pts[0][1];
+  for (let i = 1; i < pts.length; i++){
+    if (x <= pts[i][0]){
+      const [a, va] = pts[i - 1], [b, vb] = pts[i];
+      const s = (x - a) / (b - a);
+      const e = s * s * (3 - 2 * s);
+      return va + (vb - va) * e;
+    }
+  }
+  return pts[pts.length - 1][1];
+}
+function aplicarPosePatada(P, pr){
+  pr = Math.max(0, Math.min(1, pr));
+  P.piernaD.rotation.x = kfPatada(KF_PATADA.piernaD, pr);
+  P.piernaD.userData.rodilla.rotation.x = kfPatada(KF_PATADA.rodD, pr);
+  P.piernaI.rotation.x = kfPatada(KF_PATADA.piernaI, pr);
+  P.piernaI.userData.rodilla.rotation.x = 0.1;
+  P.brazoI.rotation.x = kfPatada(KF_PATADA.brazoI, pr);
+  P.brazoD.rotation.x = kfPatada(KF_PATADA.brazoD, pr);
+  if (P.brazoI.userData.codo && P.brazoD.userData.codo){
+    P.brazoI.userData.codo.rotation.x = kfPatada(KF_PATADA.codoI, pr);
+    P.brazoD.userData.codo.rotation.x = kfPatada(KF_PATADA.codoD, pr);
+  }
+  P.torso.rotation.x = kfPatada(KF_PATADA.torsoX, pr);
+  P.torso.rotation.z = kfPatada(KF_PATADA.torsoZ, pr);
+  P.pelvis.position.y = 0.92 + kfPatada(KF_PATADA.pelY, pr);
+  P.pelvis.rotation.x = kfPatada(KF_PATADA.pelX, pr);
+  P.pelvis.rotation.z = kfPatada(KF_PATADA.pelZ, pr);
+  P.pelvis.rotation.y = kfPatada(KF_PATADA.pelYaw, pr);
+  P.cabeza.rotation.x = -0.05;
+}
+
 const POSES_FOTO = [
   {
     nombre: 'De pie sensual',
@@ -5386,6 +6180,21 @@ const POSES_FOTO = [
       P.piernaD.userData.rodilla.rotation.x = 0.08;
     }
   },
+  {
+    nombre: '🦵 Patada de empuje',
+    patada: true, // el modo foto coloca un zombi delante para ver el impacto
+    aplicar(p, t){
+      // ciclo lento de la patada con una PAUSA en el impacto, para revisarla
+      // desde cualquier ángulo con la cámara orbital (←→ / arrastrar el ratón)
+      const ciclo = (t % 4.6) / 4.6;
+      let pr;
+      if (ciclo < 0.22) pr = (ciclo / 0.22) * PR_PATADA_GOLPE;                 // carga + extensión
+      else if (ciclo < 0.36) pr = PR_PATADA_GOLPE;                             // mantiene el impacto
+      else if (ciclo < 0.72) pr = PR_PATADA_GOLPE + ((ciclo - 0.36) / 0.36) * (1 - PR_PATADA_GOLPE); // retracción
+      else pr = 1;                                                             // breve reposo
+      aplicarPosePatada(p.userData.parts, pr);
+    }
+  },
 ];
 const FILTROS_FOTO = [
   { nombre: 'Normal',        clase: 'ff-normal' },
@@ -5395,11 +6204,44 @@ const FILTROS_FOTO = [
   { nombre: 'Violeta neón',  clase: 'ff-neon' },
   { nombre: 'Noche azul',    clase: 'ff-azul' },
 ];
-const Foto = { activo: false, pose: 0, filtro: 0, ang: 0.6, alt: 1.65, dist: 3.3, arrastrando: false, ultX: 0, ultY: 0 };
+const Foto = { activo: false, pose: 0, filtro: 0, ang: 0.6, alt: 1.65, dist: 3.3, arrastrando: false, ultX: 0, ultY: 0, zombiFoto: null };
+
+// en la pose de la patada se coloca (una sola vez) un zombi delante de Angie,
+// a la distancia a la que llega el pie extendido, para ver visualmente cómo
+// conecta; al cambiar de pose o salir del modo foto se restaura a su sitio.
+function colocarZombiPatadaFoto(){
+  if (!jugador || Foto.zombiFoto) return;
+  let mejor = null, mejorD = Infinity;
+  for (const z of zombis){
+    if (!z || !z.m || z.estado === 'tumbado' || z.estado === 'levantandose' || z.moribundo) continue;
+    const dx = z.m.position.x - jugador.position.x, dz = z.m.position.z - jugador.position.z;
+    const d = dx * dx + dz * dz;
+    if (d < mejorD){ mejorD = d; mejor = z; }
+  }
+  if (!mejor) return;
+  Foto.zombiFoto = { zb: mejor, x: mejor.m.position.x, z: mejor.m.position.z, rotY: mejor.m.rotation.y, vis: mejor.m.visible };
+  const fx = Math.sin(jugador.rotation.y), fz = Math.cos(jugador.rotation.y);
+  mejor.m.position.set(jugador.position.x + fx * 0.85, 0, jugador.position.z + fz * 0.85);
+  mejor.m.rotation.y = jugador.rotation.y + Math.PI; // de frente a Angie
+  mejor.m.visible = true; // puede venir invisible en niveles de noche
+  if (mejor.charco) mejor.charco.position.set(mejor.m.position.x, 0.012, mejor.m.position.z);
+}
+function restaurarZombiFoto(){
+  if (!Foto.zombiFoto) return;
+  const s = Foto.zombiFoto;
+  s.zb.m.position.set(s.x, 0, s.z);
+  s.zb.m.rotation.y = s.rotY;
+  s.zb.m.visible = s.vis;
+  if (s.zb.charco) s.zb.charco.position.set(s.x, 0.012, s.z);
+  Foto.zombiFoto = null;
+}
 
 function aplicarPoseFoto(t){
   if (!jugador) return;
   POSES_FOTO[Foto.pose].aplicar(jugador, t);
+  // la pose de la patada trae un zombi delante para ver el impacto; las demás no
+  if (POSES_FOTO[Foto.pose].patada) colocarZombiPatadaFoto();
+  else restaurarZombiFoto();
   // respiración del busto
   const P = jugador.userData.parts;
   if (P.pelvis.userData.busto){
@@ -5445,6 +6287,7 @@ function entrarModoFoto(){
 }
 function salirModoFoto(){
   if (!Foto.activo) return;
+  restaurarZombiFoto(); // devolver el zombi de la pose de la patada a su sitio
   Foto.activo = false;
   document.getElementById('foto-ui').classList.add('oculto');
   document.getElementById('filtro-foto').className = 'ff-normal';
@@ -5821,7 +6664,7 @@ function actualizarSpawner(dt){
   const pesos = [['caminante', cfg.caminantes, 5]];
   if (cfg.corredores > 0) pesos.push(['corredor', cfg.corredores, 3]);
   if (cfg.velAbo) pesos.push(['abominacion', cfg.abominaciones, 1]);
-  if (S.nivel >= 2) pesos.push(['tumbado', 4, 1.6]);
+  if (S.nivel >= 3) pesos.push(['tumbado', 4, 1.6]);
   const disponibles = pesos.filter(p => contarTipo(p[0]) < p[1]);
   if (!disponibles.length) return;
   let total = 0;
@@ -5875,17 +6718,17 @@ function construirNivel(n){
   S.buffFuerza = 0;
   S.sushiT = 4;
   document.getElementById('sushi-buff').classList.add('oculto');
-  if (n === 4){
+  if (n === 5){
     crearPuestoSushi(metaX - 2.8, metaZ - 6.4);
   }
   const ms = document.getElementById('mision-sushi');
   if (ms){
-    ms.classList.toggle('oculto', n !== 4);
+    ms.classList.toggle('oculto', n !== 5);
     actualizarMisionSushi();
   }
   const mm = document.getElementById('mision-mochi');
   if (mm){
-    mm.classList.toggle('oculto', n !== 4);
+    mm.classList.toggle('oculto', n !== 5);
     actualizarMisionMochi();
   }
 
@@ -5894,7 +6737,7 @@ function construirNivel(n){
   juan.position.set(metaX - 2.8, 0, metaZ - 3.2);
   juan.rotation.y = Math.PI;
   escena.add(juan);
-  if (n === 4) ponerCuchilloAJuan();
+  if (n === 5) ponerCuchilloAJuan();
   donna = construirDonna();
   donna.position.set(metaX + 1.6, 0, metaZ - 2.4);
   donna.rotation.y = Math.PI;
@@ -5952,6 +6795,11 @@ function construirNivel(n){
   spawnTimer = 0.5;
   patadaCd = 0; invuln = 0; enAire = false; velY = 0;
   S.armaCd = 0; S.swing = null; S.patadaAnim = null;
+  if (jugador && jugador.userData.parts){
+    const Pr = jugador.userData.parts;
+    Pr.brazoD.rotation.z = 0;
+    Pr.torso.rotation.y = 0; Pr.torso.rotation.z = 0;
+  }
   if (S.ovillo){
     escena.remove(S.ovillo.m);
     liberarRecursos(S.ovillo.m);
@@ -5960,7 +6808,7 @@ function construirNivel(n){
   escape = null;
   camaraCine = null;
   equiparArma(S.armaActual);
-  AudioSys.fijarRaizMusica([110, 98, 82, 73, 65][n]);
+  AudioSys.fijarRaizMusica([120, 110, 98, 82, 73, 65][n]);
   if (cfg.sol.esNoche) AudioSys.iniciarGrillos();
   else AudioSys.detenerGrillos();
 
@@ -6036,8 +6884,8 @@ function dialogo(nombre, color, texto){
     nom.style.background = color;
     const hint = document.getElementById('dialogo-hint');
     d.classList.toggle('sin-sub', !subtitulosOn);
-    if (subtitulosOn){ hint.style.display = 'block'; hint.textContent = '▼ Continuar'; }
-    else { hint.style.display = 'block'; hint.textContent = '▶'; }
+    hint.style.display = 'block';
+    hint.textContent = subtitulosOn ? '▶ Espacio para continuar' : '▶';
     txt.textContent = '';
     d.classList.add('mostrar');
     let i = 0, terminado = false;
@@ -6050,9 +6898,20 @@ function dialogo(nombre, color, texto){
       if (!terminado) return;
       d.classList.remove('mostrar');
       d.removeEventListener('click', cerrar);
+      window.removeEventListener('keydown', cerrarTecla);
       res();
     };
-    setTimeout(() => d.addEventListener('click', cerrar), 80);
+    const cerrarTecla = e => {
+      if (e.code === 'Enter' || e.code === 'Space' || e.code === 'Escape'){
+        e.preventDefault();
+        e.stopPropagation();
+        cerrar();
+      }
+    };
+    setTimeout(() => {
+      d.addEventListener('click', cerrar);
+      window.addEventListener('keydown', cerrarTecla);
+    }, 80);
   });
 }
 function cine(pos, look, dur){
@@ -6795,7 +7654,7 @@ function bucle(){
   actualizarTutorial(dt);
   if (Foto.activo){
     aplicarPoseFoto(tGlobal);
-    sincronizarAngieGLB(); // las poses del modo foto también se copian al GLB
+    sincronizarAngieGLB(dt); // las poses del modo foto también se copian al GLB
   }
 
   const mundoActivo = !Foto.activo && S.estado !== 'pausa' && S.estado !== 'menu' && S.estado !== 'fin' &&
@@ -6818,7 +7677,15 @@ function bucle(){
 
     // ¿Llegó a la meta?
     if (S.estado === 'jugando' && dist2(jugador.position.x, jugador.position.z, metaX, metaZ) < 6.5){
-      if (S.nivel + 1 >= S.maxNivel){
+      // candado de fotos: la puerta del refugio solo se abre con las fotos del nivel
+      const fotosReq = NIVELES[S.nivel].fotosReq || 0;
+      if (fotosReq > 0 && S.fotos < fotosReq){
+        if (!S.fotosAvisado){
+          S.fotosAvisado = true;
+          mostrarToast('📸 ¡Te faltan ' + (fotosReq - S.fotos) + ' foto(s)! Reúnelas para abrir la puerta del refugio (las marcas el minimapa).');
+          setTimeout(() => { S.fotosAvisado = false; }, 4500);
+        }
+      } else if (S.nivel + 1 >= S.maxNivel){
         // el jefe bloquea el camino a casa
         if (S.jefe && !S.jefe.muerto){
           if (!S.jefe.avisado){
@@ -6835,11 +7702,11 @@ function bucle(){
   // animación de Juan y gatos en reposo
   if (juan && S.estado === 'jugando' && !escape && dist2(jugador.position.x, jugador.position.z, metaX, metaZ) < 40){
     // en el nivel final, Juan está cocinando sushi (la animación de picar vive en actualizarSushiJuan)
-    if (S.nivel === 4 && juan.userData.cuchillo) actualizarSushiJuan(dt, tGlobal);
+    if (S.nivel === 5 && juan.userData.cuchillo) actualizarSushiJuan(dt, tGlobal);
     else animarHumano(juan, tGlobal, false, false, false, false);
     animarGato(donna, tGlobal, false, false);
     animarGato(zanahorio, tGlobal, false, false);
-  } else if (juan && S.estado === 'jugando' && !escape && S.nivel === 4 && juan.userData.cuchillo){
+  } else if (juan && S.estado === 'jugando' && !escape && S.nivel === 5 && juan.userData.cuchillo){
     actualizarSushiJuan(dt, tGlobal);
   }
   if (juan && S.estado === 'cutscene' && S.banqueteFinal && S.mesaBanquete){
